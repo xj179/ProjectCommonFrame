@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+
+    <Button
+        android:text="查询1(有弹窗)"
+        android:id="@+id/main_check_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="查询2(无弹窗)"
+        android:id="@+id/main_check2_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="跳转到-->NoPresenterActivity"
+        android:id="@+id/main_intent_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:maxLines="5"
+        android:id="@+id/main_msg_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="Hello World!"/>
+
+    <FrameLayout
+        android:background="#e9e5e5"
+        android:layout_marginTop="50dp"
+        android:id="@+id/frame_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+</LinearLayout>
