@@ -42,7 +42,7 @@ public class LoginPresenter extends LoginContract.Presenter {
             public void onError(ExceptionHandle.ResponeThrowable e) {
                 if (getView() != null) {
                     //// TODO: 2017/12/28 自定义处理异常
-                    ToastUtil.showShortToast(ExceptionHandle.handleException(e).message);
+                    ToastUtil.show(ExceptionHandle.handleException(e).message);
                 }
             }
         });

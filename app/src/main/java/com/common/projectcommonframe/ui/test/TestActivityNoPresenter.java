@@ -90,7 +90,7 @@ public class TestActivityNoPresenter extends BaseActivity {
             @Override
             public void onError(ExceptionHandle.ResponeThrowable e) {
                 if (this != null) {
-                    ToastUtil.showShortToast(ExceptionHandle.handleException(e).message);
+                    ToastUtil.show(ExceptionHandle.handleException(e).message);
                 }
             }
         });

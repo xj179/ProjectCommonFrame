@@ -7,6 +7,8 @@ import android.os.Looper;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.common.projectcommonframe.components.MyApplication;
+
 /**
  * 作者：senon on 2017/12/7 14:21
  * 邮箱：a1083911695@163.com
@@ -15,20 +17,20 @@ public class ToastUtil {
     private static Toast toast;
     private static TextView stoast;
 
-    public static void showShortToast(String msg) {
-        showCustomToast(ApplicationUtil.getContext(), msg, Toast.LENGTH_SHORT);
+    public static void show(String msg) {
+        showCustomToast(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT);
     }
 
-    public static void showShortToast(int msgId) {
-        showCustomToast(ApplicationUtil.getContext(), msgId, Toast.LENGTH_SHORT);
+    public static void show(int msgId) {
+        showCustomToast(MyApplication.getInstance(), msgId, Toast.LENGTH_SHORT);
     }
 
     public static void showLongToast(String msg) {
-        showCustomToast(ApplicationUtil.getContext(), msg, Toast.LENGTH_LONG);
+        showCustomToast(MyApplication.getInstance(), msg, Toast.LENGTH_LONG);
     }
 
     public static void showLongToast(int msgId) {
-        showCustomToast(ApplicationUtil.getContext(), msgId, Toast.LENGTH_LONG);
+        showCustomToast(MyApplication.getInstance(), msgId, Toast.LENGTH_LONG);
     }
 
     public static void showToastInUiThread(final Activity activity, final String msg) {

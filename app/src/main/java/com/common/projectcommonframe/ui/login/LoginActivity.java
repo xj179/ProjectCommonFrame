@@ -83,7 +83,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     public void setMsg(String msg) {
-        ToastUtil.showShortToast(msg);
+        ToastUtil.show(msg);
     }
 
     @Override

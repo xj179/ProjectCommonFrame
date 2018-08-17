@@ -3,9 +3,15 @@ package com.common.projectcommonframe.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.google.gson.Gson;
+import com.socks.library.KLog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
+import java.util.List;
+
 import butterknife.ButterKnife;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 所以Activity的基类Activity
@@ -13,7 +19,7 @@ import butterknife.ButterKnife;
  * @param <V>
  * @param <P>
  */
-public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter<V>> extends RxAppCompatActivity {
+public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter<V>> extends RxAppCompatActivity implements EasyPermissions.PermissionCallbacks  {
 
     //引用V层和P层
     private V view ;
@@ -47,6 +53,37 @@ public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter
             presenter.attachView(view);
         }
         init() ;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions 交给EasyPermissions去处理
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> permissionsList) {
+        // Some permissions have been granted
+        Gson son ;
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> permissionsList) {
+        // Some permissions have been denied  权限拒绝
+        KLog.d("onPermissionsDenied:" + requestCode + ":" + permissionsList.size());
+
+        // (Optional) Check whether the user denied any permissions and checked "NEVER ASK AGAIN."
+        // This will display a dialog directing them to enable the permission in app settings.
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, permissionsList)) {
+            new AppSettingsDialog.Builder(this)
+                    .setTitle("权限请求")
+                    .setRationale("需要访问您设备上的应用权限。打开app设置界面，修改app权限。")
+                    .setPositiveButton("确定")
+                    .setNegativeButton("取消")
+                    .build().show();
+        }
     }
 
     @Override
