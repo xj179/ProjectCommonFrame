@@ -28,6 +28,22 @@ public class TestFragment extends BaseFragment<LoginContract.View, LoginContract
     @BindView(R.id.fragment_msg_tv)
     TextView fragmentMsgTv;
 
+    /**
+     * 实例化Fragment
+     * @param param1  参数1
+     * @param param2  参数2
+     * @return
+     */
+    public static TestFragment getInstance(String param1, String param2){
+        TestFragment fragment = new TestFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("param1", param1);
+        bundle.putString("param2", param2);
+        fragment.setArguments(bundle);
+        return  fragment ;
+    } ;
+
+
     @Override
     public int getLayoutId() {
         return R.layout.test_fragment_login;

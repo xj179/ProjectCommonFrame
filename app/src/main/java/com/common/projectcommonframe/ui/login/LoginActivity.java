@@ -14,6 +14,8 @@ import com.common.projectcommonframe.base.BaseResponse;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
+import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
+import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.utils.ToastUtil;
 
 import java.util.HashMap;
@@ -60,7 +62,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     public void init() {
         getSupportFragmentManager().
                 beginTransaction().
-//                replace(R.id.frame_lay, new LoginFragment()).
+                replace(R.id.frame_lay, TestFragment.getInstance("参数1", "参数二")).
                 commitAllowingStateLoss();
     }
 
@@ -113,7 +115,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 getPresenter().logout(map2,false,true);
                 break;
             case R.id.main_intent_btn:
-//                startActivity(new Intent(LoginActivity.this,NoPresenterActivity.class));
+                startActivity(new Intent(LoginActivity.this,TestActivityNoPresenter.class));
                 break;
         }
     }
