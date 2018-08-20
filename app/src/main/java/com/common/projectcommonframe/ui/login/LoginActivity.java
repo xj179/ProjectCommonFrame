@@ -17,6 +17,7 @@ import com.common.projectcommonframe.presenter.LoginPresenter;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.utils.ToastUtil;
+import com.socks.library.KLog;
 
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +65,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 beginTransaction().
                 replace(R.id.frame_lay, TestFragment.getInstance("参数1", "参数二")).
                 commitAllowingStateLoss();
+        KLog.i("test") ;
     }
 
     @Override
