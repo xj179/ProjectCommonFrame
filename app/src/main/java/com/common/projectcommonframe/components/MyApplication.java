@@ -47,7 +47,7 @@ public class MyApplication extends Application {
         super.onCreate();
         mInstance = this;
 
-        // 雷神你个小傻蛋
+        // 雷神你个小傻蛋1234
 //        initUmengShareSDK();                     //友盟初始化
 //        initFresco();                           //fresco初始化
         QbSdk.initX5Environment(this, null);   //X5内核浏览器初始化(如果需要使用webview请用这个代替系统的webview)
