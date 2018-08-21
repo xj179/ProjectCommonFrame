@@ -10,12 +10,9 @@ import android.widget.Toast;
 import com.common.projectcommonframe.components.MyApplication;
 
 /**
- * 作者：senon on 2017/12/7 14:21
- * 邮箱：a1083911695@163.com
  */
 public class ToastUtil {
     private static Toast toast;
-    private static TextView stoast;
 
     public static void show(String msg) {
         showCustomToast(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT);
@@ -88,7 +85,7 @@ public class ToastUtil {
             if (toast == null) {
                 toast = Toast.makeText(context, msg, duration);
             }else {
-                stoast.setText(msg);
+                toast.setText(msg);
             }
             toast.show();
         }
