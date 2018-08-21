@@ -16,6 +16,7 @@ import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
+import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.socks.library.KLog;
 
@@ -43,6 +44,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     FrameLayout frameLay;
     @BindView(R.id.activity_main)
     LinearLayout activityMain;
+    @BindView(R.id.main_intent_btn2)
+    Button mainIntentBtn2;
 
     @Override
     public int getLayoutId() {
@@ -65,7 +68,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 beginTransaction().
                 replace(R.id.frame_lay, TestFragment.getInstance("参数1", "参数二")).
                 commitAllowingStateLoss();
-        KLog.i("test") ;
+        KLog.i("test");
     }
 
     @Override
@@ -94,31 +97,36 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn,R.id.main_check2_btn,R.id.main_intent_btn})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
                 break;
             case R.id.main_check_btn:
                 mainMsgTv.setText("");
-                HashMap<String,Object> map = new HashMap<>();
-                map.put("type","yuantong");
-                map.put("postid","11111111111");
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("type", "yuantong");
+                map.put("postid", "11111111111");
 //                map.put("mobile","18328008870");
 //                map.put("secret","34ba01d602c88790bbe81a7aca8d3a9f");
 //                KLog.e("mobile:  "+"18328008870"+"  secret:   "+"34ba01d602c88790bbe81a7aca8d3a9f");
-                getPresenter().login(map,true,true);
+                getPresenter().login(map, true, true);
                 break;
             case R.id.main_check2_btn:
                 mainMsgTv.setText("");
-                HashMap<String,Object> map2 = new HashMap<>();
-                map2.put("type","yuantong");
-                map2.put("postid","11111111111");
-                getPresenter().logout(map2,false,true);
+                HashMap<String, Object> map2 = new HashMap<>();
+                map2.put("type", "yuantong");
+                map2.put("postid", "11111111111");
+                getPresenter().logout(map2, false, true);
                 break;
             case R.id.main_intent_btn:
-                startActivity(new Intent(LoginActivity.this,TestActivityNoPresenter.class));
+                startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
                 break;
         }
+    }
+
+    @OnClick(R.id.main_intent_btn2)
+    public void onViewClicked() {
+        toActivity(TestPickerViewActivity.class);
     }
 }

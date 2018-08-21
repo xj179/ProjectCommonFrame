@@ -1,5 +1,6 @@
 package com.common.projectcommonframe.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -96,5 +97,37 @@ public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter
 
     public P getPresenter() {
         return presenter;
+    }
+
+    protected final int DEFAULT_REQUEST_CODE = 10000;
+
+    public void toActivity(Class c) {
+        Intent intent = new Intent(this, c);
+        startActivity(intent);
+    }
+
+    public void toActivity(Class c, Intent intent) {
+        intent.setClass(this, c);
+        startActivity(intent);
+    }
+
+    public void toActivityForResult(Class c) {
+        Intent intent = new Intent(this, c);
+        startActivityForResult(intent, DEFAULT_REQUEST_CODE);
+    }
+
+    public void toActivityForResult(Class c, Intent intent) {
+        intent.setClass(this, c);
+        startActivityForResult(intent, DEFAULT_REQUEST_CODE);
+    }
+
+    public void toActivityForResult(Class c, int requestCode) {
+        Intent intent = new Intent(this, c);
+        startActivityForResult(intent, requestCode);
+    }
+
+    public void toActivityForResult(Class c, Intent intent, int requestCode) {
+        intent.setClass(this, c);
+        startActivityForResult(intent, requestCode);
     }
 }

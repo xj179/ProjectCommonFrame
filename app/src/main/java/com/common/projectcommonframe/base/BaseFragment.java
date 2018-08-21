@@ -1,6 +1,7 @@
 package com.common.projectcommonframe.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -66,5 +67,15 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
         if (unbinder != null) {
             unbinder.unbind();
         }
+    }
+
+    public void toActivity(Class c) {
+        Intent intent = new Intent(getActivity(), c);
+        startActivity(intent);
+    }
+
+    public void toActivity(Class c, Intent intent) {
+        intent.setClass(getActivity(), c);
+        startActivity(intent);
     }
 }
