@@ -2,6 +2,7 @@ package com.common.projectcommonframe.ui.test;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,9 +19,13 @@ import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.base.BasePresenter;
 import com.common.projectcommonframe.base.BaseView;
+import com.common.projectcommonframe.components.BusEventData;
 import com.common.projectcommonframe.utils.TimeUtil;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.contrarywind.interfaces.IPickerViewData;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,8 +71,13 @@ public class TestPickerViewActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @OnClick({R.id.check_btn, R.id.check_btn2})
@@ -80,6 +90,14 @@ public class TestPickerViewActivity extends BaseActivity {
                 showOptionsPick();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        BusEventData bed =  new BusEventData(BusEventData.KEY_REFRESH);
+        bed.setContent("TestPickerViewActivity 传过去的值....");
+        EventBus.getDefault().post(bed);
     }
 
     /**

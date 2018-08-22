@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.base.BaseResponse;
+import com.common.projectcommonframe.components.BusEventData;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
@@ -19,6 +20,10 @@ import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.socks.library.KLog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,11 +74,18 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 replace(R.id.frame_lay, TestFragment.getInstance("参数1", "参数二")).
                 commitAllowingStateLoss();
         KLog.i("test");
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -128,5 +140,16 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     @OnClick(R.id.main_intent_btn2)
     public void onViewClicked() {
         toActivity(TestPickerViewActivity.class);
+    }
+
+    /**
+     * EventBsu接受3.0后通过注解方式来接收
+     * @param busEventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void testEventBusRevive(BusEventData busEventData){
+        if (busEventData != null && busEventData.getEventKey().equals(BusEventData.KEY_REFRESH)) {
+             ToastUtil.show(busEventData.getContent());
+        }
     }
 }
