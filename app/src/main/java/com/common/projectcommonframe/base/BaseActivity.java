@@ -67,14 +67,12 @@ public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter
     @Override
     public void onPermissionsGranted(int requestCode, List<String> permissionsList) {
         // Some permissions have been granted
-        Gson son ;
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> permissionsList) {
         // Some permissions have been denied  权限拒绝
         KLog.d("onPermissionsDenied:" + requestCode + ":" + permissionsList.size());
-
         // (Optional) Check whether the user denied any permissions and checked "NEVER ASK AGAIN."
         // This will display a dialog directing them to enable the permission in app settings.
         if (EasyPermissions.somePermissionPermanentlyDenied(this, permissionsList)) {

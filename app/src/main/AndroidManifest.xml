@@ -11,7 +11,18 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--充许读取存储-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--充许定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--充许照相-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--充许发送短信-->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!--充许读取联系人-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--充许录音-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
     <uses-permission android:name="android.permission.GET_TASKS" />

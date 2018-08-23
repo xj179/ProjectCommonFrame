@@ -18,6 +18,7 @@ import com.common.projectcommonframe.presenter.LoginPresenter;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
+import com.common.projectcommonframe.utils.PermissionsUtil;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.socks.library.KLog;
 
@@ -31,6 +32,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.ObservableTransformer;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 
 /**
  * UI层MVP当中的V（View）,以模块划分
@@ -75,6 +79,16 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 commitAllowingStateLoss();
         KLog.i("test");
         EventBus.getDefault().register(this);
+
+        EasyPermissions.requestPermissions(this, "请求权限", 0, PermissionsUtil.PERMISSONS_GROUP);
+    }
+
+    /**
+     * 参加为requstCode（所有的权限同意了才会进入此方法）
+     */
+    @AfterPermissionGranted(0)
+    public void onPermissionsSuccess() {
+        ToastUtil.show( "用户授权成功");
     }
 
     @Override

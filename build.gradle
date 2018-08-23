@@ -34,14 +34,14 @@ ext {
     // SDK And Tools
     minSdkVersion = 19
     targetSdkVersion = 27
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     buildToolsVersion = '27.0.3'
 
     //Dependencies
     /*支持库的版本需要跟compileSdkVersion保持一致。
     注意：由于依赖的支持库会打包进apk，所以官方推荐开发者在编译时使用ProGuard工具预处理release版本的apk。
     ProGuard工具除了混淆源代码外，还会移除那些依赖的支持库中没有使用到的类，达到apk瘦身的效果。*/
-    appcompatVersion = "27+"
+    appcompatVersion = "28+"
 //    appcompatVersion = "27+"
-    designVersion = "27+"
+    designVersion = "28+"
 }
