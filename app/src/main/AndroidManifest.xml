@@ -46,7 +46,10 @@
         </activity>
 
         <activity android:name=".ui.test.TestActivityNoPresenter" android:screenOrientation="portrait"/>
+        <!--测试日期和条件选择框(三级联动)Activity-->
         <activity android:name=".ui.test.TestPickerViewActivity" android:screenOrientation="portrait"/>
+        <!--通用浏览器Activity-->
+        <activity android:name=".ui.browser.BrowserActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

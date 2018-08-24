@@ -1,0 +1,36 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--默认颜色-->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="2dp" />
+            <gradient
+                android:angle="270"
+                android:centerColor="#E3E3E3"
+                android:endColor="#E6E6E6"
+                android:startColor="#C8C8C8" />
+        </shape>
+    </item>
+    <!--加载进度颜色-->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="2dp" />
+                <gradient
+                    android:centerColor="@color/colorPrimary"
+                    android:endColor="@color/colorPrimary"
+                    android:startColor="@color/colorPrimary" />
+        <!--        <gradient
+                    android:centerColor="#00ae98"
+                    android:endColor="#00ae98"
+                    android:startColor="#00ae98" />-->
+
+            </shape>
+        </clip>
+    </item>
+
+    <!--#258CF2-->
+    <!--#3FB4F8-->
+    <!--#5DE1FF-->
+
+</layer-list>

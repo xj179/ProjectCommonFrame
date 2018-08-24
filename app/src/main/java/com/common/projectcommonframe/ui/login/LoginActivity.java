@@ -15,6 +15,7 @@ import com.common.projectcommonframe.components.BusEventData;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
+import com.common.projectcommonframe.ui.browser.BrowserActivity;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
@@ -59,6 +60,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button mainIntentBtn2;
     @BindView(R.id.main_btn2)
     Button main_btn2;
+    @BindView(R.id.main_btn3)
+    Button main_btn3;
 
     @BindView(R.id.title)
     Title title ;
@@ -150,7 +153,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -174,6 +177,9 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 break;
             case R.id.main_intent_btn:
                 startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
+                break;
+            case R.id.main_btn3:
+                toActivity(BrowserActivity.class);
                 break;
             case R.id.main_btn2:
                 /*new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
