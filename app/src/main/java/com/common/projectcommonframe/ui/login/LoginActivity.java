@@ -20,6 +20,7 @@ import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
 import com.common.projectcommonframe.utils.PermissionsUtil;
 import com.common.projectcommonframe.utils.ToastUtil;
+import com.common.projectcommonframe.view.Title;
 import com.socks.library.KLog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,6 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.ObservableTransformer;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -55,6 +57,11 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     LinearLayout activityMain;
     @BindView(R.id.main_intent_btn2)
     Button mainIntentBtn2;
+    @BindView(R.id.main_btn2)
+    Button main_btn2;
+
+    @BindView(R.id.title)
+    Title title ;
 
     @Override
     public int getLayoutId() {
@@ -73,6 +80,26 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @Override
     public void init() {
+        title.setTitle("登入界面");
+        title.setLeftButton(R.mipmap.icon_back, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        title.setRightButton(R.mipmap.icon_share, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.show("分享~");
+            }
+        });
+      /*  title.setRightButton2(R.mipmap.icon_share, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.show("setRightButton2 图片~");
+            }
+        });*/
+
         getSupportFragmentManager().
                 beginTransaction().
                 replace(R.id.frame_lay, TestFragment.getInstance("参数1", "参数二")).
@@ -123,7 +150,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -147,6 +174,38 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 break;
             case R.id.main_intent_btn:
                 startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
+                break;
+            case R.id.main_btn2:
+                /*new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Won't be able to recover this file!")
+                        .setCancelText("取消")
+                        .setConfirmText("Yes,delete it!")
+                        .setConfirmText("确定")
+                        .showCancelButton(true)
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.cancel();
+                            }
+                        })
+                        .show();*/
+                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Won't be able to recover this file!")
+                        .setConfirmText("Yes,delete it!")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog
+                                        .setTitleText("Deleted!")
+                                        .setContentText("Your imaginary file has been deleted!")
+                                        .setConfirmText("OK")
+                                        .setConfirmClickListener(null)
+                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        })
+                        .show();
                 break;
         }
     }

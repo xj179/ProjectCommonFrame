@@ -6,4 +6,18 @@
 
     <!--如果是八位，前二位代表透明度-->
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!--分隔线颜色-->
+    <color name="dividerColor">#c1c1c1</color>
+
+    <color name="red">#D81E06</color>
+    <color name="orange">#f4511e</color>
+    <color name="pink">#D4237A</color>
+
+    <color name="darkGray">#333333</color>
+    <color name="gray">#666666</color>
+    <color name="text">#999999</color>
+    <color name="lightGray">#d5d5d5</color>
+    <color name="errorTextColor">#f10000</color>
 </resources>

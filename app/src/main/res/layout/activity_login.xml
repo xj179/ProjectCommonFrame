@@ -6,10 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical">
+
+    <!--公共Title-->
+    <com.common.projectcommonframe.view.Title
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
 
     <Button
         android:text="查询1(有弹窗)"
@@ -29,6 +32,12 @@
     <Button
         android:text="跳转到-->TestPickerViewActivity"
         android:id="@+id/main_intent_btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="弹出SweetDialog"
+        android:id="@+id/main_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView

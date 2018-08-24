@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--自定义Title属性-->
+    <declare-styleable name="Title">
+        <attr name="textColor" format="color" />
+        <attr name="titleBg" format="color" />
+        <attr name="hasDivider" format="boolean" />
+    </declare-styleable>
+
+    <!--<declare-styleable name="SwipeMenuLayout">
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ChatView">
+        <attr name="isLeft" format="boolean" />
+        <attr name="isGrowUp" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="RingProgress">
+        <attr name="bgColor" format="color|reference"/>
+        <attr name="bgShadowColor" format="color|reference"/>
+        <attr name="rotate" format="integer"/>
+        <attr name="showBackground" format="boolean"/>
+        <attr name="showBackgroundShadow" format="boolean"/>
+        <attr name="showRingCorner" format="boolean"/>
+        <attr name="ringWidthScale" format="float"/>
+        <attr name="ringSweepAngle" format="integer"/>
+        <attr name="showBorder" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="AdView">
+        <attr name="header" format="reference" />
+        <attr name="headerMinHeight" format="dimension|reference" />
+    </declare-styleable>
+    <declare-styleable name="AutoScrollViewPager">
+        <attr name="point_layout" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="MedalView">
+        <attr name="rank">
+            <enum name="r1" value="1" />
+            <enum name="r2" value="2" />
+            <enum name="r3" value="3" />
+        </attr>
+        <attr name="count" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="ContestView">
+        <attr name="page_news" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="bannerView">
+        &lt;!&ndash;bannertype表示banner展现位置模块，1表示首页模块，2表示发现模块等&ndash;&gt;
+        <attr name="bannertype" format="string"/>
+        &lt;!&ndash;圆角&ndash;&gt;
+        <attr name="roundedCornerRadius" format="dimension"/>
+    </declare-styleable>-->
+</resources>
