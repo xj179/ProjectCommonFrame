@@ -1,7 +1,11 @@
 package com.common.projectcommonframe.ui.login;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -19,7 +23,9 @@ import com.common.projectcommonframe.ui.browser.BrowserActivity;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
+import com.common.projectcommonframe.utils.CompoundDrawableUtil;
 import com.common.projectcommonframe.utils.PermissionsUtil;
+import com.common.projectcommonframe.utils.SelectorUtil;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.common.projectcommonframe.view.Title;
 import com.socks.library.KLog;
@@ -81,6 +87,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return new LoginPresenter(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void init() {
         title.setTitle("登入界面");
@@ -96,12 +103,28 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 ToastUtil.show("分享~");
             }
         });
-      /*  title.setRightButton2(R.mipmap.icon_share, new View.OnClickListener() {
+        title.setRightButton2(R.mipmap.icon_close, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ToastUtil.show("setRightButton2 图片~");
             }
-        });*/
+        });
+
+        //代码动态设置文本颜色Selector
+//        SelectorUtil.setColorSelectorByView(mainCheckBtn, R.color.red, R.color.orange);  //Error无效不能通过R.color方式设置
+        SelectorUtil.setTextColorSelector(mainCheckBtn, Color.parseColor("#ff0000"), Color.parseColor("#00ff00"));
+        KLog.i("parseColor:" + Color.parseColor("#ff0000") + "\n" + "getColorColor:" + R.color.red);
+
+        //动态设置背景颜色Selector
+        ColorStateList colorStateList = SelectorUtil.createColorStateList(Color.parseColor("#ff0000"), Color.parseColor("#00ff00"));
+        mainCheck2Btn.setBackgroundTintList(colorStateList);
+
+        //动态设置View 上 下 左 右 图片
+        CompoundDrawableUtil.setCompoundDrawableOfLeft(mainIntentBtn, getDrawable(R.mipmap.icon_share));
+        CompoundDrawableUtil.setCompoundDrawablePadding(mainIntentBtn, 25);
+
+        CompoundDrawableUtil.setCompoundDrawableOfTop(mainIntentBtn2, SelectorUtil.createDrawableSelector(this, getDrawable(R.mipmap.icon_share), getDrawable(R.mipmap.icon_close)));
+//        CompoundDrawableUtil.setPadding(mainIntentBtn2, 5);
 
         getSupportFragmentManager().
                 beginTransaction().

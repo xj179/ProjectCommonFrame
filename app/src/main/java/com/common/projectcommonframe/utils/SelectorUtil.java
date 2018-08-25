@@ -9,8 +9,11 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -101,18 +104,32 @@ public class SelectorUtil {
     }
 
     /**
-     * Android 代码设置TextView 字体颜色--ColorStateList
-     *
+     * 设置文字颜色ColorSelector
+     * 重载默认选中和按下是同一个颜色
+     * !!!!!默认必需在下面不然不起作用
      * @param view
      * @param normal
-     * @param checked 色必须设置成如上“0xffffffff”形式,设置R.Color.red 会无效,目前不清楚怎么回事。希望有高人解答。
+     * @param press
      */
-    public static void setColorSelectorByView(View view, int normal, int checked) {
-        int[] colors = new int[]{normal, checked, normal};
+    public static void setTextColorSelector(View view, int normal, int press) {
+        setTextColorSelector(view, normal, press, press) ;
+    }
+
+
+    /**
+     * 设置文字颜色ColorSelector
+     * Android 代码设置TextView 字体颜色--ColorStateList
+     *!!!!!默认必需在下面不然不起作用
+     * @param view
+     * @param normal
+     * @param press 色必须设置成如上“0xffffffff”形式,设置R.Color.red 会无效,目前不清楚怎么回事。希望有高人解答。
+     */
+    public static void setTextColorSelector(View view, int normal, int press, int selected) {
+        int[] colors = new int[]{press, selected, normal};
         int[][] states = new int[3][];
-        states[0] = new int[]{-android.R.attr.state_checked};
-        states[1] = new int[]{android.R.attr.state_checked};
-        states[2] = new int[]{android.R.attr.state_selected};
+        states[0] = new int[]{android.R.attr.state_pressed};
+        states[1] = new int[]{android.R.attr.state_selected};
+        states[2] = new int[]{};
         ColorStateList colorStateList = new ColorStateList(states, colors);
         if (view instanceof TextView) {
             TextView textView = (TextView) view;
@@ -121,34 +138,65 @@ public class SelectorUtil {
     }
 
     /**
-     * 对TextView设置不同状态时其文字颜色。
+     * 设置背景颜色ColorSelector
+     * 重载默认选中和按下是同一个颜色
+     * !!!!!默认必需在下面不然不起作用
+     * @param view
+     * @param normal
+     * @param press
      */
-    public static ColorStateList createColorStateList(int normal, int pressed, int focused, int unable) {
-        int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
-        int[][] states = new int[6][];
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void setBackgroundColorSelector(View view, int normal, int press) {
+        setBackgroundColorSelector(view, normal, press, press) ;
+    }
+
+    /**
+     * 设置背景颜色ColorSelector
+     * @param view
+     * @param normal
+     * @param press
+     * @param selected
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void setBackgroundColorSelector(View view, int normal, int press, int selected) {
+        int[] colors = new int[]{press, selected, normal};
+        int[][] states = new int[3][];
+        states[0] = new int[]{android.R.attr.state_pressed};
+        states[1] = new int[]{android.R.attr.state_selected};
+        states[2] = new int[]{};
+        ColorStateList colorStateList = new ColorStateList(states, colors);
+        view.setBackgroundTintList(colorStateList);
+    }
+
+
+    /**
+     * 返回一个ColorStateList（默认按下和选中是同一种效果）
+     * @param normal
+     * @param pressed
+     * @return
+     */
+    public static ColorStateList createColorStateList(int normal, int pressed) {
+        return createColorStateList(normal, pressed, pressed) ;
+    }
+
+    /**
+     * 代码设置TextView 字体颜色--ColorStateList
+     * !!!!!!默认必需在下面不然不起作用
+     * @param normal  默认颜色
+     * @param pressed   按下颜色
+     * @param selected   选中颜色
+     * @return
+     */
+    public static ColorStateList createColorStateList(int normal, int pressed, int selected) {
+        int[] colors = new int[]{pressed, selected, normal};
+        int[][] states = new int[3][];
+        states[0] = new int[]{android.R.attr.state_pressed};
+        states[1] = new int[]{android.R.attr.state_selected};
+        states[2] = new int[]{};
         ColorStateList colorList = new ColorStateList(states, colors);
         return colorList;
     }
 
-    /**
-     * 对TextView设置不同状态时其文字颜色。
-     */
-    public static ColorStateList createColorStateList(int normal, int checked) {
-        int[] colors = new int[]{normal, checked, checked, checked};
-        int[][] states = new int[4][];
-        states[0] = new int[]{};
-        states[1] = new int[]{android.R.attr.state_checked};
-        states[2] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_selected};
-        ColorStateList colorStateList = new ColorStateList(states, colors);
-        return colorStateList;
-    }
 
     /**
      * 替换StateListDrawable中的颜色

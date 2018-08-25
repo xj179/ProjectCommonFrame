@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="activityBg">#f1f1f1</color>
+    <color name="pressedColor">#eeeeee</color>
+
     <!--如果是八位，前二位代表透明度-->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
