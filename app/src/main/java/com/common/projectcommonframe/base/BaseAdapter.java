@@ -75,4 +75,18 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
         mList.addAll(data);
         notifyDataSetChanged();
     }
+
+
+    /**
+     * 移除一个Item
+     * @param adapterPosition
+     */
+    public void removeItem(int adapterPosition){
+        if (adapterPosition==RecyclerView.NO_POSITION)
+            return;
+        if (adapterPosition >= 0 && adapterPosition < mList.size()) {  //mList为数据集合
+            mList.remove(adapterPosition);
+            notifyItemRemoved(adapterPosition);
+        }
+    }
 }

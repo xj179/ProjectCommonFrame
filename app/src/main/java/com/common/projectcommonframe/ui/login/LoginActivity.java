@@ -23,6 +23,7 @@ import com.common.projectcommonframe.ui.browser.BrowserActivity;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
+import com.common.projectcommonframe.ui.test.banner.TestBannerViewActivity;
 import com.common.projectcommonframe.utils.CompoundDrawableUtil;
 import com.common.projectcommonframe.utils.PermissionsUtil;
 import com.common.projectcommonframe.utils.SelectorUtil;
@@ -68,6 +69,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button main_btn2;
     @BindView(R.id.main_btn3)
     Button main_btn3;
+    @BindView(R.id.main_btn4)
+    Button main_btn4;
 
     @BindView(R.id.title)
     Title title ;
@@ -176,7 +179,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3, R.id.main_btn4})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -201,8 +204,11 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
             case R.id.main_intent_btn:
                 startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
                 break;
-            case R.id.main_btn3:
+            case R.id.main_btn3:  //通用webview Activity
                 toActivity(BrowserActivity.class);
+                break;
+            case R.id.main_btn4:   //加载广告示例Activity
+                toActivity(TestBannerViewActivity.class);
                 break;
             case R.id.main_btn2:
                 /*new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)

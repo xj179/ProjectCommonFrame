@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--指示符(一般用作BannerView<轮播广播>下面的点)-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <size android:height="6dp" android:width="6dp"/>
+    <solid android:color="#DEE8FF"/>
+    <corners android:radius="3dp"/>
+</shape>
