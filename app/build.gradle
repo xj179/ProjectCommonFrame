@@ -20,6 +20,16 @@ android {
             abiFilters "armeabi", "armeabi-v7a"
         }
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true }}
+
+        /**   Cannot fit requested classes in a single dex file. Try supplying a main-dex list
+              原因是Android系统定义总方法数是一个short int，short int 最大值为65536。解决这个问题的方案是：
+             在Android的模块gradle文件的defaultConfig默认配置里面增加：  multiDexEnabled true
+             同时在dependencies里面增加：
+             implementation 'com.android.support:multidex:1.0.3'
+             另外需要把AndroidMainfest.xml里面添加自定义的App继承自MultiDexApplication
+         */
+        multiDexEnabled true
+
     }
 
     /**如果libs目录在src目录下面打开下面这个*/
@@ -30,31 +40,33 @@ android {
     }*/
 
     /**配置签名文件，debug和release用同一个签名文件（方便调试）*/
-   /* signingConfigs {
+    signingConfigs {
         debug {
-            storeFile file("D:/android_sign/insure_expert.jks")
-            storePassword '2017y07X06x'
-            keyAlias 'insure_expert_key'
-            keyPassword '2017y07X06x'
+             storeFile file("common_sign.jks")                         //设置的是签名路径。一般是把签名文件放在工程的APP根目录（记得上线时候删除）
+//             storeFile file("D:/android_sign/common_sign.jks")    //签名文件配置在本地盘中
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
         }
         release {
-            storeFile file("D:/android_sign/insure_expert.jks")
-            storePassword '2017y07X06x'
-            keyAlias 'insure_expert_key'
-            keyPassword '2017y07X06x'
+            storeFile file("common_sign.jks")                      //设置的是签名路径。一般是把签名文件放在工程的APP根目录（记得上线时候删除）
+//            storeFile file("D:/android_sign/common_sign.jks")    //签名文件配置在本地盘中
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
         }
-    }*/
+    }
 
     buildTypes {
-     /*   debug {
+        debug {
             signingConfig signingConfigs.debug
-        }*/
+        }
 
         release {
             //签名
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
             /**是否充许release版本调试*/
-//            debuggable true
+            debuggable true
             //Zipalign优化
             zipAlignEnabled true
             // 移除无用的resource文件(shrinkResources 为true minifyEnable必需为true，不然会报Error:Removing unused resources requires unused code shrinking to be turned on)
