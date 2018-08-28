@@ -89,4 +89,19 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
             notifyItemRemoved(adapterPosition);
         }
     }
+
+    /**
+     * 更新某个Item
+     * @param o
+     */
+    public void update(Object o) {
+        if (mList!=null) {
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i)==o) {
+                    notifyItemChanged(i);
+                    return;
+                }
+            }
+        }
+    }
 }

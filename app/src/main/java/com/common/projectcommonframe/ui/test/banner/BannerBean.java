@@ -1,12 +1,12 @@
 package com.common.projectcommonframe.ui.test.banner;
 
 
-import com.common.projectcommonframe.base.BaseBean;
+import com.common.projectcommonframe.base.BaseEntity;
 
 /**
  * 广告
  */
-public class BannerBean extends BaseBean {
+public class BannerBean extends BaseEntity {
 
     private int id;
     private String createtime;

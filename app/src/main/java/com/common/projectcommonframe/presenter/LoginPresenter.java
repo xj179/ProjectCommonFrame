@@ -33,8 +33,11 @@ public class LoginPresenter extends LoginContract.Presenter {
             public void onNext(Object o) {
                 //这一步是必须的，判断view是否已经被销毁
                 if (getView() != null) {
-                    getView().result((BaseResponse<List<Login>>) o);
-                    getView().setMsg("请求成功~");
+                    BaseResponse<List<Login>> response = (BaseResponse<List<Login>>) o;
+                    if (response.getCode() == 0) {
+                        getView().result(response);
+                        getView().setMsg("请求成功~");
+                    }
                 }
             }
 

@@ -3,6 +3,7 @@ package com.common.projectcommonframe.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.socks.library.KLog;
@@ -11,6 +12,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -25,6 +27,9 @@ public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter
     //引用V层和P层
     private V view ;
     private  P presenter ;
+
+    //可以用系统的ProgressDialog代替
+    private SweetAlertDialog dialog ;
 
     //layout布局的ID
     public abstract int getLayoutId() ;
@@ -127,5 +132,41 @@ public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter
     public void toActivityForResult(Class c, Intent intent, int requestCode) {
         intent.setClass(this, c);
         startActivityForResult(intent, requestCode);
+    }
+
+
+    /**
+     * 显示进度框
+     * @param msg  加载Title
+     */
+    protected  void  showProgressDialog(String msg){
+        if (dialog == null) {
+            dialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE) ;
+            if (TextUtils.isEmpty(msg)) {
+                dialog.setContentText("正在加载...") ;
+            }else {
+                dialog.setContentText(msg) ;
+            }
+        }
+        if (dialog.isShowing()) {
+            dialog.dismiss();
+        }
+        dialog.show();
+    }
+
+    /**
+     * 显示进度框
+     */
+    protected  void  showProgressDialog(){
+        showProgressDialog("");
+    }
+
+    /**
+     * 关闭进度框
+     */
+    protected  void  closeProgressDialog(){
+        if (dialog != null) {
+            dialog.cancel();
+        }
     }
 }

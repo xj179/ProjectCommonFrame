@@ -17,6 +17,8 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/activityBg"
+        android:id="@+id/container_sv"
         android:fillViewport="true">
 
         <LinearLayout

@@ -22,4 +22,12 @@ public class BaseResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
 }

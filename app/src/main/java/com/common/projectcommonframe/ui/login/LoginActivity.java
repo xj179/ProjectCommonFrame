@@ -5,7 +5,10 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.NestedScrollView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -26,6 +29,7 @@ import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
 import com.common.projectcommonframe.ui.test.banner.TestBannerViewActivity;
 import com.common.projectcommonframe.utils.CompoundDrawableUtil;
 import com.common.projectcommonframe.utils.PermissionsUtil;
+import com.common.projectcommonframe.utils.ScreenUtil;
 import com.common.projectcommonframe.utils.SelectorUtil;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.common.projectcommonframe.view.Title;
@@ -35,6 +39,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,6 +79,9 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 
     @BindView(R.id.title)
     Title title ;
+
+    @BindView(R.id.container_sv)
+    NestedScrollView scrollView ;
 
     @Override
     public int getLayoutId() {
@@ -202,7 +210,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 getPresenter().logout(map2, false, true);
                 break;
             case R.id.main_intent_btn:
-                startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
+//                startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
+                testShoot() ;
                 break;
             case R.id.main_btn3:  //通用webview Activity
                 toActivity(BrowserActivity.class);
@@ -248,6 +257,25 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     @OnClick(R.id.main_intent_btn2)
     public void onViewClicked() {
         toActivity(TestPickerViewActivity.class);
+    }
+
+
+    /**
+     * 测试截屏
+     */
+    public void testShoot(){
+        //测试截屏
+        showProgressDialog();
+        // 最好判断是否有存储权限，没有的话去请求存储权限
+//        boolean shoot = ScreenUtil.shoot(this, new File(Environment.getExternalStorageDirectory() + File.separator + "testShootActivity.png"));  //截取Activity
+        boolean shoot = ScreenUtil.shoot(scrollView, new File(Environment.getExternalStorageDirectory() + File.separator + "testShootView.png"));  //截取View里面的内容
+        if (shoot) {
+            ToastUtil.show("截屏成功");
+            closeProgressDialog();
+        } else {
+            ToastUtil.show("截屏失败");
+            closeProgressDialog();
+        }
     }
 
     /**

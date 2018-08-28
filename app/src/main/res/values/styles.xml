@@ -1,22 +1,37 @@
 <resources>
 
-<!-- Base application theme. -->
-<!--   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBarNoActionBar">-->
-<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
-    <!--取消Android中控件text默认为大写API21以前是没有此问题-->
-    <item name="textAllCaps">false</item>
-    <!--全局设置Activity的打开效果-->
-    <item name="android:windowAnimationStyle">@style/activityAnimation</item>
-</style>
+    <!-- Base application theme. -->
+    <!--   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBarNoActionBar">-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--取消Android中控件text默认为大写API21以前是没有此问题-->
+        <item name="textAllCaps">false</item>
+        <!--全局设置Activity的打开效果-->
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
 
-<style name="activityAnimation" parent="@android:style/Animation">
-    <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
-    <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
-    <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
-    <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
-</style>
+    <!--打开和关闭Activity动画-->
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+
+    <!--继承AppCompatActivity透明主题,透明，有任务栏电量时间等-->
+    <style name="NoTitleTranslucentTheme" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!--AppCompatActivity实现全屏设置-->
+    <style name="AppCompatFullTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
 </resources>

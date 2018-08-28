@@ -1,10 +1,12 @@
 package com.common.projectcommonframe.entity;
 
+import com.common.projectcommonframe.base.BaseEntity;
+
 /**
  *
  *
  */
-public class Login {
+public class Login extends BaseEntity {
 
     /**
      * Simple:

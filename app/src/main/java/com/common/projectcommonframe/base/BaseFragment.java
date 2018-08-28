@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * 继承RxFragment防止RXJava引起的内存泄漏
@@ -27,6 +29,9 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
     private P presenter ;
 
     public Context mContext ;
+
+    //可以用系统的ProgressDialog代替
+    private SweetAlertDialog dialog ;
 
     private Unbinder unbinder ;
 
@@ -45,6 +50,7 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View layoutView = inflater.inflate(getLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, layoutView);
+        mContext = getActivity() ;
         if (view == null) {
             view = createView();
         }
@@ -77,5 +83,37 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
     public void toActivity(Class c, Intent intent) {
         intent.setClass(getActivity(), c);
         startActivity(intent);
+    }
+
+    /**
+     * 显示进度框
+     * @param msg  加载Title
+     */
+    protected  void  showProgressDialog(String msg){
+        if (dialog == null) {
+            dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE) ;
+            if (TextUtils.isEmpty(msg)) {
+                dialog.setContentText("正在加载...") ;
+            }else {
+                dialog.setContentText(msg) ;
+            }
+        }
+        dialog.show();
+    }
+
+    /**
+     * 显示进度框
+     */
+    protected  void  showProgressDialog(){
+        showProgressDialog("");
+    }
+
+    /**
+     * 关闭进度框
+     */
+    protected  void  closeProgressDialog(){
+        if (dialog != null) {
+            dialog.cancel();
+        }
     }
 }

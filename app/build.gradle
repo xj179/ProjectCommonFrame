@@ -176,7 +176,7 @@ dependencies {
     implementation 'com.bigkoo:ConvenientBanner:2.1.4'
 
    /* 网络图片滑动查看，可缩放 https://github.com/chrisbanes/PhotoView  官网示例Demo: https://github.com/davemorrissey/subsampling-scale-image-view */
-    implementation 'com.commit451:PhotoView:1.2.4'
+    implementation 'com.github.chrisbanes:PhotoView:1.3.0'
 
     /*腾讯X5内核WebView浏览器jar*/
     implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1325_43613_sharewithdownload_withoutGame_obfs_20180807_151115.jar')
