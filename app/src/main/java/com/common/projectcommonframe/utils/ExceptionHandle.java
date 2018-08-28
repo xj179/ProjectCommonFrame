@@ -11,8 +11,6 @@ import java.net.ConnectException;
 import retrofit2.HttpException;
 
 /**
- * 作者：senon on 2017/12/28 11:29
- * 邮箱：a1083911695@163.com
  * 错误处理驱动
  */
 public class ExceptionHandle {

@@ -15,6 +15,7 @@ import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.components.MyApplication;
 import com.common.projectcommonframe.utils.glide.GlideUtil;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -184,7 +185,8 @@ public class TestBannerViewActivity extends AppCompatActivity implements OnItemC
     @Override
     public void onItemClick(int position) {
         Toast.makeText(this,"点击了第"+position+"个",Toast.LENGTH_SHORT).show();
-//        startActivity(new Intent(this, HeaderActivity.class));
+        //打开预览View
+        TestImagePagerActivity.startImagePagerActivity(this, Arrays.asList(images), 0);
 //        convenientBanner.setCanLoop(!convenientBanner.isCanLoop());
     }
 

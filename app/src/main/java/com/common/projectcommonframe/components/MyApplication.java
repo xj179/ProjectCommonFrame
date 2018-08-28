@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.common.projectcommonframe.dao.DaoMaster;
 import com.common.projectcommonframe.dao.DaoSession;
@@ -147,7 +148,7 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        //解决dex64K 引用限制”
+        //解决dex64K 引用限制”  如果不继承MultiDexApplication 直接重新此方法添加MultiDex.install(this)。  MultiDexApplication源码当中也只是重写此方法添加MultiDex.install(this)函数
         MultiDex.install(this);
     }
 }

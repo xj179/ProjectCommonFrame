@@ -41,7 +41,7 @@ ext {
     /*支持库的版本需要跟compileSdkVersion保持一致。
     注意：由于依赖的支持库会打包进apk，所以官方推荐开发者在编译时使用ProGuard工具预处理release版本的apk。
     ProGuard工具除了混淆源代码外，还会移除那些依赖的支持库中没有使用到的类，达到apk瘦身的效果。*/
-    appcompatVersion = "28+"
+    appcompatVersion = "28.0.0-rc01"
 //    appcompatVersion = "27+"
-    designVersion = "28+"
+    designVersion = "28.0.0-rc01"
 }

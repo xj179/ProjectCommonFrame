@@ -53,6 +53,8 @@
         <activity android:name=".ui.test.TestPickerViewActivity" android:screenOrientation="portrait"/>
         <!--测试广告控件Activity-->
         <activity android:name=".ui.test.banner.TestBannerViewActivity" android:screenOrientation="portrait"/>
+        <!--图片预览Activity-->
+        <activity android:name=".ui.test.banner.TestImagePagerActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

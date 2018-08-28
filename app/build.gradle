@@ -92,7 +92,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
-//    implementation "com.android.support:support-v4:$rootProject.ext.appcompatVersion"
+    implementation "com.android.support:support-v4:$rootProject.ext.appcompatVersion"
     implementation "com.android.support:design:$rootProject.ext.appcompatVersion"
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -174,6 +174,9 @@ dependencies {
 
     /*通用的广告栏控件，让你轻松实现广告头效果 https://github.com/Bigkoo/Android-ConvenientBanner */
     implementation 'com.bigkoo:ConvenientBanner:2.1.4'
+
+   /* 网络图片滑动查看，可缩放 https://github.com/chrisbanes/PhotoView  官网示例Demo: https://github.com/davemorrissey/subsampling-scale-image-view */
+    implementation 'com.commit451:PhotoView:1.2.4'
 
     /*腾讯X5内核WebView浏览器jar*/
     implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1325_43613_sharewithdownload_withoutGame_obfs_20180807_151115.jar')

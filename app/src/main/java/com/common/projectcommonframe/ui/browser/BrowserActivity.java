@@ -14,6 +14,7 @@ import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.base.BasePresenter;
 import com.common.projectcommonframe.base.BaseView;
 import com.common.projectcommonframe.view.Title;
+import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
@@ -163,6 +164,16 @@ public class BrowserActivity extends BaseActivity {
         webView.removeJavascriptInterface("searchBoxJavaBridge_");
         webView.removeJavascriptInterface("accessibility");
         webView.removeJavascriptInterface("accessibilityTraversal");
+
+        //webview中的下载调用系统下载
+        webView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
+                Uri uri = Uri.parse(s);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

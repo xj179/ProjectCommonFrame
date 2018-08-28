@@ -23,7 +23,6 @@ import jp.wasabeef.glide.transformations.GrayscaleTransformation;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
- * Created by wjj on 2018/7/10 10:49
  * E-Mail ：
  * 描述：Glide工具类（glide 4.x）
  * 功能包括加载图片，圆形图片，圆角图片，指定圆角图片，模糊图片，灰度图片等等。
