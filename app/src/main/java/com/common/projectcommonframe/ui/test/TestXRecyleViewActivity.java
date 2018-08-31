@@ -1,5 +1,6 @@
 package com.common.projectcommonframe.ui.test;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
@@ -16,7 +18,10 @@ import com.common.projectcommonframe.base.BaseAdapter;
 import com.common.projectcommonframe.base.BasePresenter;
 import com.common.projectcommonframe.base.BaseView;
 import com.common.projectcommonframe.components.BusEventData;
+import com.common.projectcommonframe.components.MyApplication;
+import com.common.projectcommonframe.utils.ScreenUtil;
 import com.common.projectcommonframe.utils.ThreadTransformer;
+import com.common.projectcommonframe.utils.glide.GlideUtil;
 import com.common.projectcommonframe.view.Title;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -25,6 +30,7 @@ import com.socks.library.KLog;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -52,6 +58,13 @@ public class TestXRecyleViewActivity extends BaseActivity {
 
     List<Integer> listImagsID ;
     XRecyleviewAdapter mAdapter;
+    private String[] images = {
+            "http://img2.3lian.com/2014/f2/37/d/40.jpg",
+            "http://img2.3lian.com/2014/f2/37/d/39.jpg",
+            "http://www.8kmm.com/UploadFiles/2012/8/201208140920132659.jpg",
+            "http://f.hiphotos.baidu.com/image/h%3D200/sign=1478eb74d5a20cf45990f9df460b4b0c/d058ccbf6c81800a5422e5fdb43533fa838b4779.jpg",
+            "http://f.hiphotos.baidu.com/image/pic/item/09fa513d269759ee50f1971ab6fb43166c22dfba.jpg"
+    };
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -85,16 +98,6 @@ public class TestXRecyleViewActivity extends BaseActivity {
         //不用默认的加载样式,设置自己喜欢的加载样式
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallBeat);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.TriangleSkewSpin);
-
-        listImagsID = new ArrayList<Integer>();
-        listImagsID.add(R.mipmap.test_0);
-        listImagsID.add(R.mipmap.test_1);
-        listImagsID.add(R.mipmap.test_2);
-        listImagsID.add(R.mipmap.test_3);
-        listImagsID.add(R.mipmap.test_4);
-        listImagsID.add(R.mipmap.test_5);
-//        listImagsID.add(R.mipmap.test_6);
-        mAdapter.refreshData(listImagsID);
         mRecyclerView.setAdapter(mAdapter);
 
 //        Observable.empty().delay()
@@ -104,7 +107,7 @@ public class TestXRecyleViewActivity extends BaseActivity {
                 compositeDisposable.add(Observable.just("test").delay(2, TimeUnit.SECONDS).compose(new ThreadTransformer<String>()).subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        mAdapter.refreshData(listImagsID);
+                        mAdapter.refreshData(Arrays.asList(images));
                         mRecyclerView.refreshComplete();
                     }
                 }));
@@ -114,9 +117,6 @@ public class TestXRecyleViewActivity extends BaseActivity {
             public void onLoadMore() {
                 //没有分页数据打开这行
 //                mRecyclerView.setNoMore(true);
-                final List<Integer> list = new ArrayList<Integer>() ;
-                list.add(R.mipmap.test_6) ;
-
                 compositeDisposable.add(Observable.create(new ObservableOnSubscribe<Object>() {
                     @Override
                     public void subscribe(ObservableEmitter<Object> e) throws Exception {
@@ -125,6 +125,9 @@ public class TestXRecyleViewActivity extends BaseActivity {
                 }).delay(2, TimeUnit.SECONDS).compose(new ThreadTransformer()).subscribe(new Consumer() {
                     @Override
                     public void accept(Object o) throws Exception {
+                        String s = Arrays.asList(images).get(images.length - 1);
+                        List list = new ArrayList<String>() ;
+                        list.add(s) ;
                         mAdapter.loadMoreData(list);
                         mRecyclerView.loadMoreComplete();
                         KLog.i("接受到的值:" + o);
@@ -132,6 +135,8 @@ public class TestXRecyleViewActivity extends BaseActivity {
                 }));
             }
         });
+
+        mRecyclerView.refresh();  //手动代码调用刷新
     }
 
     @Override
@@ -155,7 +160,7 @@ public class TestXRecyleViewActivity extends BaseActivity {
         EventBus.getDefault().post(bed);
     }
 
-    class XRecyleviewAdapter extends BaseAdapter<Integer, XRcyleviewHolder> {
+    class XRecyleviewAdapter extends BaseAdapter<String, XRcyleviewHolder> {
 
         public XRecyleviewAdapter(Context context) {
             super(context);
@@ -170,8 +175,8 @@ public class TestXRecyleViewActivity extends BaseActivity {
 
         @Override
         public void onBindVH(XRcyleviewHolder xRcyleviewHolder, int position) {
-            Integer item = getItem(position);
-            xRcyleviewHolder.advertIv.setImageResource(item);
+            String item = getItem(position);
+            GlideUtil.loadImage(TestXRecyleViewActivity.this, item, xRcyleviewHolder.advertIv);
         }
 
     }
@@ -184,6 +189,11 @@ public class TestXRecyleViewActivity extends BaseActivity {
         public XRcyleviewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) advertIv.getLayoutParams();  //这里其实还没有渲染，所以没法得到具体的宽高,得到的宽高为负数，
+            layoutParams.width = ScreenUtil.getScreenWidth(MyApplication.getInstance());
+            layoutParams.height = ScreenUtil.dp2px(MyApplication.getInstance(), 300);
+//            advertIv.setLayoutParams(layoutParams);  //不需要重新设置也是可以的哦~
         }
     }
 }
