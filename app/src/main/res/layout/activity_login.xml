@@ -61,6 +61,11 @@
                 android:id="@+id/main_btn4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <Button
+                android:text="打开xRecyleView  Activity"
+                android:id="@+id/main_btn5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:maxLines="5"
                 android:id="@+id/main_msg_tv"

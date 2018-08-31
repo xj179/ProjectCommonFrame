@@ -25,7 +25,16 @@ public abstract class BaseAdapter<T, VH extends RecyclerView.ViewHolder> extends
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mList == null ? 0 : mList.size();
+    }
+
+    /**
+     * 得到某个位置的数据对象
+     * @param position
+     * @return
+     */
+    public T getItem(int position){
+        return mList == null ? null :mList.get(position) ;
     }
 
     @Override

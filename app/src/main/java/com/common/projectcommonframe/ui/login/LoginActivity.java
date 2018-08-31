@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v4.widget.NestedScrollView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -27,6 +26,7 @@ import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
 import com.common.projectcommonframe.ui.test.banner.TestBannerViewActivity;
+import com.common.projectcommonframe.ui.test.TestXRecyleViewActivity;
 import com.common.projectcommonframe.utils.CompoundDrawableUtil;
 import com.common.projectcommonframe.utils.PermissionsUtil;
 import com.common.projectcommonframe.utils.ScreenUtil;
@@ -49,7 +49,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import io.reactivex.ObservableTransformer;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
-import pub.devrel.easypermissions.PermissionRequest;
 
 /**
  * UI层MVP当中的V（View）,以模块划分
@@ -76,6 +75,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button main_btn3;
     @BindView(R.id.main_btn4)
     Button main_btn4;
+    @BindView(R.id.main_btn5)
+    Button main_btn5;
 
     @BindView(R.id.title)
     Title title ;
@@ -187,7 +188,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3, R.id.main_btn4})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3, R.id.main_btn4, R.id.main_btn5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -210,8 +211,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 getPresenter().logout(map2, false, true);
                 break;
             case R.id.main_intent_btn:
-//                startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
-                testShoot() ;
+                startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
+//                testShoot() ;
                 break;
             case R.id.main_btn3:  //通用webview Activity
                 toActivity(BrowserActivity.class);
@@ -219,8 +220,11 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
             case R.id.main_btn4:   //加载广告示例Activity
                 toActivity(TestBannerViewActivity.class);
                 break;
+            case R.id.main_btn5:   //加载XRecyleView  Activity
+                toActivity(TestXRecyleViewActivity.class);
+                break;
             case R.id.main_btn2:
-                /*new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+                new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
                         .setTitleText("Are you sure?")
                         .setContentText("Won't be able to recover this file!")
                         .setCancelText("取消")
@@ -233,8 +237,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                                 sDialog.cancel();
                             }
                         })
-                        .show();*/
-                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .show();
+  /*              new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
                         .setContentText("Won't be able to recover this file!")
                         .setConfirmText("Yes,delete it!")
@@ -249,7 +253,17 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                                         .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                             }
                         })
-                        .show();
+                        .show();*/
+
+                /*弹出编辑框*/
+               /* EditText et = new EditText(this) ;
+//                et.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(this, 60)));
+                new SweetAlertDialog(this).setCustomView(et).setTitleText("编辑昵称").show();*/
+
+              /*  EditText et = new EditText(this) ;
+                BottomSheetDialog dialog = new BottomSheetDialog(this);
+                dialog.setContentView(R.layout.activity_login);
+                dialog.show();*/
                 break;
         }
     }

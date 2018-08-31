@@ -29,7 +29,6 @@ android {
              另外需要把AndroidMainfest.xml里面添加自定义的App继承自MultiDexApplication
          */
         multiDexEnabled true
-
     }
 
     /**如果libs目录在src目录下面打开下面这个*/
@@ -87,6 +86,13 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+
+    /* Android Studio编译问题：Error:java.util.concurrent.ExecutionException: com.android.builder.internal.aapt.AaptException:
+       这个问题一般会在打包的时候遇到，查阅了网上很多资料都是说因为项目路径过长原因导致，但是其实很多时候并不是的，其主要原因是builde.gradle会在你打包的时候去检查你的res资源，一旦出现不规范就会出现该错误。
+       以上是问题所在，解决方案：
+       当然解决方案就是我们主动去禁止它检查，即在你Module的builde.gradle中添加以下代码：*/
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
 }
 
 dependencies {

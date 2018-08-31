@@ -55,6 +55,8 @@
         <activity android:name=".ui.test.banner.TestBannerViewActivity" android:screenOrientation="portrait"/>
         <!--图片预览Activity-->
         <activity android:name=".ui.test.banner.TestImagePagerActivity" android:screenOrientation="portrait"/>
+        <!--XRecyleView(增加了上拉刷新，和下拉加载更多)Activity-->
+        <activity android:name=".ui.test.TestXRecyleViewActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
