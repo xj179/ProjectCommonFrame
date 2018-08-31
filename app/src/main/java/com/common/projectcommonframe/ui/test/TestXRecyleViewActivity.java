@@ -100,6 +100,10 @@ public class TestXRecyleViewActivity extends BaseActivity {
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.TriangleSkewSpin);
         mRecyclerView.setAdapter(mAdapter);
 
+        //禁止上拉刷新和下拉加载更多
+//        mRecyclerView.setPullRefreshEnabled(false);
+//        mRecyclerView.setPullRefreshEnabled(true);
+
 //        Observable.empty().delay()
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -190,7 +194,7 @@ public class TestXRecyleViewActivity extends BaseActivity {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) advertIv.getLayoutParams();  //这里其实还没有渲染，所以没法得到具体的宽高,得到的宽高为负数，
+            RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) itemView.getLayoutParams();  //这里其实还没有渲染，所以没法得到具体的宽高,得到的宽高为负数，
             layoutParams.width = ScreenUtil.getScreenWidth(MyApplication.getInstance());
             layoutParams.height = ScreenUtil.dp2px(MyApplication.getInstance(), 300);
 //            advertIv.setLayoutParams(layoutParams);  //不需要重新设置也是可以的哦~
