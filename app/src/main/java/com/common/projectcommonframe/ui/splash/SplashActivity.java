@@ -57,7 +57,7 @@ public class SplashActivity extends BaseActivity<SplashContract.View, SplashCont
     LinearLayout dotLl;
 
     //RxJava2 Disposable管理的对象
-    CompositeDisposable compositeDisposable ;
+    CompositeDisposable compositeDisposable;
 
     @Override
     public int getLayoutId() {
@@ -76,6 +76,7 @@ public class SplashActivity extends BaseActivity<SplashContract.View, SplashCont
 
     @Override
     public void init() {
+        compositeDisposable = new CompositeDisposable();
         if (getIntent().getIntExtra("need_show_ad", 0) == 1){
             if (getPresenter().hasAD()) {
                Disposable disposable = onFinish().subscribe(new Consumer<Object>() {
@@ -96,7 +97,7 @@ public class SplashActivity extends BaseActivity<SplashContract.View, SplashCont
     }
 
     /**
-     * 参加为requstCode（所有的权限同意了才会进入此方法）
+     * 参数为requstCode（所有的权限同意了才会进入此方法）
      */
     @AfterPermissionGranted(0)
     public void onPermissionsSuccess() {
@@ -198,6 +199,7 @@ public class SplashActivity extends BaseActivity<SplashContract.View, SplashCont
                 finish();
             }
         });
+        compositeDisposable.add(disposable) ;
 
         //是否是第一次启动(第一次启动显示引导页)
         if (getPresenter().hasNew()) {
@@ -208,7 +210,6 @@ public class SplashActivity extends BaseActivity<SplashContract.View, SplashCont
             showLoading();  // 显示默认加载页面
         }
 
-        compositeDisposable.add(disposable) ;
     }
 
     boolean canJump;
