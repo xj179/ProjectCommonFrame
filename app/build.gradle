@@ -147,6 +147,10 @@ dependencies {
     //结果转为实体类所需依赖
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
+    //RxBinding 是 Jake Wharton 的一个开源库，它提供了一套在 Android 平台上的基于 RxJava的 Binding API。所谓 Binding，就是类似设置 OnClickListener 、设置 TextWatcher 这样的注册绑定对象的 API
+    //https://github.com/JakeWharton/RxBinding
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+
     //    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0' //RxJava2.0+Retrofit2.0适配依赖
 
     //OKHttp3.0依赖

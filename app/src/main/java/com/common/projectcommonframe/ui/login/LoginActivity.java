@@ -145,7 +145,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         KLog.i("test");
         EventBus.getDefault().register(this);
 
-        EasyPermissions.requestPermissions(this, "请求权限", 0, PermissionsUtil.PERMISSONS_GROUP);
+//        EasyPermissions.requestPermissions(this, "请求权限", 0, PermissionsUtil.PERMISSONS_GROUP);
     }
 
     /**

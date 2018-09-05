@@ -81,12 +81,12 @@ public abstract  class BaseActivity<V extends BaseView, P extends  BasePresenter
         // (Optional) Check whether the user denied any permissions and checked "NEVER ASK AGAIN."
         // This will display a dialog directing them to enable the permission in app settings.
         if (EasyPermissions.somePermissionPermanentlyDenied(this, permissionsList)) {
-            new AppSettingsDialog.Builder(this)
+     /*       new AppSettingsDialog.Builder(this)
                     .setTitle("权限请求")
                     .setRationale("需要访问您设备上的应用权限。打开app设置界面，修改app权限。")
                     .setPositiveButton("确定")
                     .setNegativeButton("取消")
-                    .build().show();
+                    .build().show();*/
         }
     }
 
