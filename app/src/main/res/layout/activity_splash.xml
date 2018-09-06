@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/splash_bottom"/>
+        android:src="@mipmap/splash_bottom2"/>
 
     <ImageView
         android:layout_width="match_parent"

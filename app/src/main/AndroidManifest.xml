@@ -36,20 +36,19 @@
         android:supportsRtl="true"
         tools:replace="android:icon"
         android:theme="@style/AppTheme">
+        <!--设置透明主题解决启动白屏问题-->
         <activity android:name=".ui.splash.SplashActivity"
+            android:theme="@style/NoTitleTranslucentTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"
-            android:screenOrientation="portrait">
- <!--           <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
+
+        <activity android:name=".ui.home.MainActivity" android:launchMode="singleTask" android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.login.LoginActivity" android:screenOrientation="portrait" />
 
         <!--通用浏览器Activity-->
         <activity android:name=".ui.browser.BrowserActivity" android:screenOrientation="portrait"/>

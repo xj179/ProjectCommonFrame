@@ -9,6 +9,11 @@
         android:id="@+id/fragment_check_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:text="跳转到常用功能测试界面"
+        android:id="@+id/fragment_check_btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:maxLines="5"

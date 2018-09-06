@@ -13,6 +13,7 @@ import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.contract.SplashContract;
 import com.common.projectcommonframe.presenter.SplashPresenter;
+import com.common.projectcommonframe.ui.home.MainActivity;
 import com.common.projectcommonframe.ui.login.LoginActivity;
 import com.common.projectcommonframe.utils.PermissionsUtil;
 import com.common.projectcommonframe.view.MyFragmentPagerAdapter;
@@ -192,9 +193,11 @@ public class SplashActivity extends BaseActivity<SplashContract.View, SplashCont
             @Override
             public void accept(@io.reactivex.annotations.NonNull Boolean aBoolean) throws Exception {
                 if (aBoolean) {
-                    toActivity(LoginActivity.class);    //如果登录了跳转到主页
+                  //  toActivity(LoginActivity.class);    //如果登录了跳转到主页
+                    toActivity(MainActivity.class);
                 } else {
-                    toActivity(LoginActivity.class);    //如果没有登录去登录页
+                  //  toActivity(LoginActivity.class);    //如果没有登录去登录页
+                    toActivity(MainActivity.class);
                 }
                 finish();
             }

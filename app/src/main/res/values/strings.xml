@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">ProjectCommonFrame</string>
 
+    <!--实际根据项目中替换文字-->
+    <string name="tab_home_text">大专家</string>
+
     <string name="skip">跳过</string>
     <string name="enter">立即体验</string>
+    <string name="press_to_exit">再按一次退出应用</string>
+
 </resources>

@@ -45,6 +45,10 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V
     public abstract V createView();
     public abstract void init();
 
+    //返回Fragment的图片和文字(主要Fragment用作底部导航栏页面的Fragment需要用到)
+    public abstract int getTabImageId();
+    public abstract int getTabTextId();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

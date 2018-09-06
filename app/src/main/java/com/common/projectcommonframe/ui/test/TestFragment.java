@@ -13,6 +13,8 @@ import com.common.projectcommonframe.base.BaseResponse;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
+import com.common.projectcommonframe.ui.login.LoginActivity;
+import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +22,16 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.ObservableTransformer;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class TestFragment extends BaseFragment<LoginContract.View, LoginContract.Presenter> implements LoginContract.View {
 
     @BindView(R.id.fragment_check_btn)
     Button fragmentCheckBtn;
+    @BindView(R.id.fragment_check_btn2)
+    Button fragmentCheckBtn2;
     @BindView(R.id.fragment_msg_tv)
     TextView fragmentMsgTv;
 
@@ -62,7 +69,22 @@ public class TestFragment extends BaseFragment<LoginContract.View, LoginContract
 
     @Override
     public void init() {
+        RxView.clicks(fragmentCheckBtn2).subscribe(new Consumer<Object>() {
+            @Override
+            public void accept(Object o) throws Exception {
+                toActivity(LoginActivity.class);
+            }
+        });
+    }
 
+    @Override
+    public int getTabImageId() {
+        return R.drawable.tab_chat;
+    }
+
+    @Override
+    public int getTabTextId() {
+        return R.string.tab_home_text ;
     }
 
     @Override
@@ -77,8 +99,7 @@ public class TestFragment extends BaseFragment<LoginContract.View, LoginContract
 
     @Override
     public void setMsg(String msg) {
-        fragmentMsgTv.setText(msg);
-
+//        fragmentMsgTv.setText(msg);
     }
 
     @Override

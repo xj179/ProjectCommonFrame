@@ -23,4 +23,6 @@
     <color name="text">#999999</color>
     <color name="lightGray">#d5d5d5</color>
     <color name="errorTextColor">#f10000</color>
+
+    <color name="redpoint">#ff0000</color>
 </resources>
