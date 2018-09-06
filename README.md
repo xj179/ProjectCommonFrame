@@ -1,8 +1,21 @@
 # ProjectCommonFrame
 
 #### 项目介绍
-RxJava2+Retrofit2+OkHttp3 + Rxlifecycle 封装的MVP项目框架。数据库用的是GreenDao。
-
+想做一个通用的项目框架，而且里面包含有些常用的功能 ，所以搭建了这一个项目，也是结合网上开源的一些项目整理的。希望对自己以后做项目的时候有所帮助吧~
+  RxJava2+Retrofit2+OkHttp3 + Rxlifecycle 封装的MVP项目框架。数据库用的是GreenDao。
+常用的一些功能:
+  1. 常用的启动页(包含：启动页，广告页，引导页)
+  
+  2. 常用Banner（广告控件）
+  
+  3. 常用的图片浏览器
+  
+  4. 常用的RecyleView的上拉刷新，下拉加载更多
+  
+  5. 常用的WebView界面(通过Url地址在本应用打开URl地址)
+  
+  7. 整合了一些常用的工具 Glide加载图片， EventBus的使用....
+  
 #### 软件架构
 软件架构说明
 
