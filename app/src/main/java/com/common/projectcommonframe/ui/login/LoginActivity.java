@@ -3,10 +3,12 @@ package com.common.projectcommonframe.ui.login;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.common.projectcommonframe.BuildConfig;
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.base.BaseResponse;
@@ -40,6 +43,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -77,6 +81,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button main_btn4;
     @BindView(R.id.main_btn5)
     Button main_btn5;
+    @BindView(R.id.main_btn6)
+    Button main_btn6;
 
     @BindView(R.id.title)
     Title title ;
@@ -188,7 +194,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3, R.id.main_btn4, R.id.main_btn5})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -222,6 +228,9 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 break;
             case R.id.main_btn5:   //加载XRecyleView  Activity
                 toActivity(TestXRecyleViewActivity.class);
+                break;
+            case R.id.main_btn6:   //测试7.0以上系统文件共享(安装APK等..)
+                testInstall();
                 break;
             case R.id.main_btn2:
                 new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
@@ -301,5 +310,33 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         if (busEventData != null && busEventData.getEventKey().equals(BusEventData.KEY_REFRESH)) {
              ToastUtil.show(busEventData.getContent());
         }
+    }
+
+
+    /**
+     * 7.0(24)系统文件之间的共享更严格(以前url前缀fil://的这种形式在7.0以上拒绝，只能改成前缀为:Content://)
+     */
+    private void testInstall(){
+        String pathName = Environment.getExternalStorageDirectory() + File.separator + "test.apk" ;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){  //版本大于或等于7.0做特殊处理
+                File file= new File(pathName);
+                Uri apkUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID+".apkprovider", file);//在AndroidManifest中的android:authorities值
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);//添加这一句表示对目标应用临时授权该Uri所代表的文件
+                intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setDataAndType(Uri.fromFile(new File(pathName)), "application/vnd.android.package-archive");
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

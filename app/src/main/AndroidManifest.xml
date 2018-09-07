@@ -62,6 +62,17 @@
         <activity android:name=".ui.test.banner.TestImagePagerActivity" android:screenOrientation="portrait"/>
         <!--XRecyleView(增加了上拉刷新，和下拉加载更多)Activity-->
         <activity android:name=".ui.test.TestXRecyleViewActivity" android:screenOrientation="portrait"/>
+
+        <!--Android 7.0《API：24》强制启用了被称作 StrictMode的策略，带来的影响就是你的App对外无法暴露file://类型的URI了。
+        如果你使用Intent携带这样的URI去打开外部App(比如：打开系统相机拍照)，那么会抛出FileUriExposedException异常。
+        官方给出解决这个问题的方案，就是使用FileProvider： https://www.jianshu.com/p/55eae30d133c -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
