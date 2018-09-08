@@ -53,6 +53,12 @@
         <!--通用浏览器Activity-->
         <activity android:name=".ui.browser.BrowserActivity" android:screenOrientation="portrait"/>
 
+        <!--图片选择库Activity相关开始  <通过源码的方式引入代替> -->
+       <!-- <activity android:name="com.yongchun.library.view.ImageSelectorActivity"/>
+        <activity android:name="com.yongchun.library.view.ImagePreviewActivity"/>
+        <activity android:name="com.yongchun.library.view.ImageCropActivity"/>-->
+        <!--图片选择库Activity相关结束-->
+
         <activity android:name=".ui.test.TestActivityNoPresenter" android:screenOrientation="portrait"/>
         <!--测试日期和条件选择框(三级联动)Activity-->
         <activity android:name=".ui.test.TestPickerViewActivity" android:screenOrientation="portrait"/>
@@ -68,6 +74,8 @@
         官方给出解决这个问题的方案，就是使用FileProvider： https://www.jianshu.com/p/55eae30d133c -->
         <provider
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.apkprovider"
+            android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"

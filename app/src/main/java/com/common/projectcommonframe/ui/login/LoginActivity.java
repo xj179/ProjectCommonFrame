@@ -1,5 +1,6 @@
 package com.common.projectcommonframe.ui.login;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -37,6 +38,7 @@ import com.common.projectcommonframe.utils.SelectorUtil;
 import com.common.projectcommonframe.utils.ToastUtil;
 import com.common.projectcommonframe.view.Title;
 import com.socks.library.KLog;
+import com.yongchun.library.view.ImageSelectorActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,6 +46,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,6 +86,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button main_btn5;
     @BindView(R.id.main_btn6)
     Button main_btn6;
+    @BindView(R.id.main_btn7)
+    Button main_btn7;
 
     @BindView(R.id.title)
     Title title ;
@@ -154,14 +159,6 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 //        EasyPermissions.requestPermissions(this, "请求权限", 0, PermissionsUtil.PERMISSONS_GROUP);
     }
 
-    /**
-     * 参加为requstCode（所有的权限同意了才会进入此方法）
-     */
-    @AfterPermissionGranted(0)
-    public void onPermissionsSuccess() {
-        ToastUtil.show( "用户授权成功");
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,7 +191,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         return this.bindToLifecycle();//绑定activity，与activity生命周期一样
     }
 
-    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2, R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6})
+    @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2,
+            R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6, R.id.main_btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -220,6 +218,12 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 startActivity(new Intent(LoginActivity.this, TestActivityNoPresenter.class));
 //                testShoot() ;
                 break;
+            case R.id.main_intent_btn2:  //通用选择控件
+                toActivity(TestPickerViewActivity.class);
+                break;
+            case R.id.main_btn2:
+                testSweetAlertDialog();
+                break;
             case R.id.main_btn3:  //通用webview Activity
                 toActivity(BrowserActivity.class);
                 break;
@@ -230,23 +234,55 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 toActivity(TestXRecyleViewActivity.class);
                 break;
             case R.id.main_btn6:   //测试7.0以上系统文件共享(安装APK等..)
-                testInstall();
+                testApkInstall();
                 break;
-            case R.id.main_btn2:
-                new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
-                        .setTitleText("Are you sure?")
-                        .setContentText("Won't be able to recover this file!")
-                        .setCancelText("取消")
-                        .setConfirmText("Yes,delete it!")
-                        .setConfirmText("确定")
-                        .showCancelButton(true)
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.cancel();
-                            }
-                        })
-                        .show();
+            case R.id.main_btn7:   //Photo picker library for Android. Support single choice、multi-choice、cropping image and preview image.
+
+                //是否有权限
+                if (EasyPermissions.hasPermissions(this, Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    ImageSelectorActivity.start(this, 3, ImageSelectorActivity.MODE_MULTIPLE, true,true,true);
+                } else{
+                    EasyPermissions.requestPermissions(this, "请求权限", 0, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CAMERA);
+                }
+                 // Activity中重写此方法 onActivityResult
+                break;
+
+        }
+    }
+
+    /**
+     * 参加为requstCode（所有的权限同意了才会进入此方法）
+     */
+    @AfterPermissionGranted(0)
+    public void onPermissionsSuccess() {
+//        ToastUtil.show( "用户授权成功");
+        ImageSelectorActivity.start(this, 3, ImageSelectorActivity.MODE_MULTIPLE, true,true,true);
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> permissionsList) {
+//        super.onPermissionsDenied(requestCode, permissionsList);
+        KLog.i("onPermissionsDenied:" + requestCode +  " permissionsList:" + permissionsList);
+    }
+
+    /**
+     * 测试SweetDialog
+     */
+    private void testSweetAlertDialog() {
+        new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText("Are you sure?")
+                .setContentText("Won't be able to recover this file!")
+                .setCancelText("取消")
+                .setConfirmText("Yes,delete it!")
+                .setConfirmText("确定")
+                .showCancelButton(true)
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
+                    }
+                })
+                .show();
   /*              new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
                         .setContentText("Won't be able to recover this file!")
@@ -264,7 +300,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                         })
                         .show();*/
 
-                /*弹出编辑框*/
+        /*弹出编辑框*/
                /* EditText et = new EditText(this) ;
 //                et.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(this, 60)));
                 new SweetAlertDialog(this).setCustomView(et).setTitleText("编辑昵称").show();*/
@@ -273,13 +309,6 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 BottomSheetDialog dialog = new BottomSheetDialog(this);
                 dialog.setContentView(R.layout.activity_login);
                 dialog.show();*/
-                break;
-        }
-    }
-
-    @OnClick(R.id.main_intent_btn2)
-    public void onViewClicked() {
-        toActivity(TestPickerViewActivity.class);
     }
 
 
@@ -316,7 +345,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     /**
      * 7.0(24)系统文件之间的共享更严格(以前url前缀fil://的这种形式在7.0以上拒绝，只能改成前缀为:Content://)
      */
-    private void testInstall(){
+    private void testApkInstall(){
         String pathName = Environment.getExternalStorageDirectory() + File.separator + "test.apk" ;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){  //版本大于或等于7.0做特殊处理
@@ -338,5 +367,20 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * 接受图片ImageSelecto 回调
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == ImageSelectorActivity.REQUEST_IMAGE){
+            ArrayList<String> images = (ArrayList<String>) data.getSerializableExtra(ImageSelectorActivity.REQUEST_OUTPUT);
+            KLog.i("onActivityResult images:" + images);
+            // do something
+        }
     }
 }

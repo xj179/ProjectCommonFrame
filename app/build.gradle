@@ -100,7 +100,6 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.ext.appcompatVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.appcompatVersion"
     implementation "com.android.support:design:$rootProject.ext.appcompatVersion"
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -148,6 +147,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     //RxBinding 是 Jake Wharton 的一个开源库，它提供了一套在 Android 平台上的基于 RxJava的 Binding API。所谓 Binding，就是类似设置 OnClickListener 、设置 TextWatcher 这样的注册绑定对象的 API
+
     //https://github.com/JakeWharton/RxBinding
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
@@ -163,9 +163,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
 
     //dialog https://github.com/pedant/sweet-alert-dialog
+
     //    api 'cn.pedant.sweetalert:library:1.3'
+
     /*Android Studio 3.0，Gradle 4.1，升级之后SweetAlertDialog错误，java.lang.RuntimeException: Unknown animation name: cn.pedant.SweetAlert.Rotate3dAnimation error:nul：
-             * 使用下面这个代替 */
+                 * 使用下面这个代替 */
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'
 
     /*动态权限库EasyPermissions https://github.com/googlesamples/easypermissions */
@@ -185,11 +187,20 @@ dependencies {
     /*通用的广告栏控件，让你轻松实现广告头效果 https://github.com/Bigkoo/Android-ConvenientBanner */
     implementation 'com.bigkoo:ConvenientBanner:2.1.4'
 
-   /* 网络图片滑动查看，可缩放 https://github.com/chrisbanes/PhotoView  官网示例Demo: https://github.com/davemorrissey/subsampling-scale-image-view */
+    /* 网络图片滑动查看，可缩放 https://github.com/chrisbanes/PhotoView  官网示例Demo: https://github.com/davemorrissey/subsampling-scale-image-view */
     implementation 'com.github.chrisbanes:PhotoView:1.3.0'
+
+    /* 图片选择库这个库包含：单选，多选，是否显示拍照，是否预览，是否剪切等一系列功能 https://github.com/ioneday/ImageSelector*/
+    //implementation 'com.commit451:PhotoView:1.2.4'    //最新版本用上面的com.github.chrisbanes:PhotoView:1.3.0代替 https://github.com/chrisbanes/PhotoView
+    /*    implementation 'com.github.bumptech.glide:glide:3.6.1'  //跟本项目中用的Glide 4.x新版本有冲突，解决方案:使用源码的方式引入进来>
+        implementation 'com.isseiaoki:simplecropview:1.0.13'
+        implementation 'com.yongchun:com.yongchun.imageselector:1.1.0'*/
 
     /*腾讯X5内核WebView浏览器jar*/
     implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1325_43613_sharewithdownload_withoutGame_obfs_20180807_151115.jar')
+
+   /* 图片选择库这个库包含：单选，多选，是否显示拍照，是否预览，是否剪切等一系列功能*/
+    implementation project(':ImageSelectoLlibrary')
 }
 
 greendao {
