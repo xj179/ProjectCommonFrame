@@ -2,7 +2,7 @@ package com.common.projectcommonframe.presenter;
 
 import android.content.Context;
 
-import com.common.projectcommonframe.base.BaseResponse;
+import com.common.projectcommonframe.network.BaseResponse;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.model.LoginModel;

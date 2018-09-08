@@ -8,10 +8,10 @@ import com.common.projectcommonframe.R;
 public interface ConstantConfig {
 
     //Glide 错误默认图片
-    int  ERROR_IMG = R.drawable.ic_launcher;
+    int  ERROR_IMG = R.drawable.image_placeholder;
 
     //Glide 点位默认图片
-    int  PLACEHOLDER_IMG = R.drawable.ic_launcher;
+    int  PLACEHOLDER_IMG = R.drawable.image_placeholder;
 
     //引导图片版本号，如果SP中的版本号小于当前配置的版本号就显示引导图片(通过这种配置可以更新版本的时候也显示新的引导图片)
     int GUIDE_VERSION = 2;

@@ -1,4 +1,4 @@
-package com.common.projectcommonframe.base;
+package com.common.projectcommonframe.network;
 
 import android.text.TextUtils;
 

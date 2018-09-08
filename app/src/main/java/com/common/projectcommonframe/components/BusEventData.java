@@ -11,6 +11,10 @@ public class BusEventData {
      */
     public static  final String  KEY_REFRESH = "KEY_REFRESH" ;
     /**
+     * 版本更新
+     */
+    public static  final String  KEY_APP_UPDATE= "KEY_APP_UPDATE" ;
+    /**
      * 关闭
      */
     public static  final String  KEY_CLOSE = "KEY_CLOSE" ;

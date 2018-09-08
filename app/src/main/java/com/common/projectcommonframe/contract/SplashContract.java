@@ -1,12 +1,7 @@
 package com.common.projectcommonframe.contract;
 
 import com.common.projectcommonframe.base.BasePresenter;
-import com.common.projectcommonframe.base.BaseResponse;
 import com.common.projectcommonframe.base.BaseView;
-import com.common.projectcommonframe.entity.Login;
-
-import java.util.HashMap;
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;

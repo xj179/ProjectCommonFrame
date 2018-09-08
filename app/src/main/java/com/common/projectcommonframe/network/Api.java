@@ -1,10 +1,8 @@
-package com.common.projectcommonframe.api;
+package com.common.projectcommonframe.network;
 
-
-import com.common.projectcommonframe.base.BaseApi;
 
 /**
- *
+ * 网络访问请求类
  */
 public class Api {
 
@@ -29,4 +27,5 @@ public class Api {
         BaseApi baseApi = new BaseApi();
         apiService = baseApi.getRetrofit(baseUrl).create(ApiService.class);
     }
+
 }

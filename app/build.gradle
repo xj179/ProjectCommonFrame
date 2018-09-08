@@ -192,7 +192,7 @@ dependencies {
 
     /* 图片选择库这个库包含：单选，多选，是否显示拍照，是否预览，是否剪切等一系列功能 https://github.com/ioneday/ImageSelector*/
     //implementation 'com.commit451:PhotoView:1.2.4'    //最新版本用上面的com.github.chrisbanes:PhotoView:1.3.0代替 https://github.com/chrisbanes/PhotoView
-    /*    implementation 'com.github.bumptech.glide:glide:3.6.1'  //跟本项目中用的Glide 4.x新版本有冲突，解决方案:使用源码的方式引入进来>
+    /*    implementation 'com.github.bumptech.glide:glide:3.6.1'  //跟本项目中用的Glide 4.x新版本有冲突，解决方案:使用源码库的方式引入进来,替换原来的3.X版本用Glide的4.X版本>
         implementation 'com.isseiaoki:simplecropview:1.0.13'
         implementation 'com.yongchun:com.yongchun.imageselector:1.1.0'*/
 

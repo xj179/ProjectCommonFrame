@@ -11,67 +11,89 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--充许读取存储-->
+    <!-- 充许读取存储 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--充许定位-->
+    <!-- 充许定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--充许照相-->
+    <!-- 充许照相 -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <!--充许发送短信-->
+    <!-- 充许发送短信 -->
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <!--充许读取联系人-->
+    <!-- 充许读取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!--充许录音-->
+    <!-- 充许录音 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
+        android:name=".components.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".components.MyApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:replace="android:icon"
-        android:theme="@style/AppTheme">
-        <!--设置透明主题解决启动白屏问题-->
-        <activity android:name=".ui.splash.SplashActivity"
-            android:theme="@style/NoTitleTranslucentTheme"
-            android:screenOrientation="portrait">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+
+        <!-- 设置透明主题解决启动白屏问题 -->
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTitleTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.home.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.home.MainActivity" android:launchMode="singleTask" android:screenOrientation="portrait" />
+        <!-- 通用浏览器Activity -->
+        <activity
+            android:name=".ui.browser.BrowserActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.login.LoginActivity" android:screenOrientation="portrait" />
-
-        <!--通用浏览器Activity-->
-        <activity android:name=".ui.browser.BrowserActivity" android:screenOrientation="portrait"/>
-
-        <!--图片选择库Activity相关开始  <通过源码的方式引入代替> -->
-       <!-- <activity android:name="com.yongchun.library.view.ImageSelectorActivity"/>
+        <!-- 图片选择库Activity相关开始  <通过源码的方式引入代替> -->
+        <!--
+        <activity android:name="com.yongchun.library.view.ImageSelectorActivity"/>
         <activity android:name="com.yongchun.library.view.ImagePreviewActivity"/>
-        <activity android:name="com.yongchun.library.view.ImageCropActivity"/>-->
-        <!--图片选择库Activity相关结束-->
+        <activity android:name="com.yongchun.library.view.ImageCropActivity"/>
+        -->
+        <!-- 图片选择库Activity相关结束 -->
 
-        <activity android:name=".ui.test.TestActivityNoPresenter" android:screenOrientation="portrait"/>
-        <!--测试日期和条件选择框(三级联动)Activity-->
-        <activity android:name=".ui.test.TestPickerViewActivity" android:screenOrientation="portrait"/>
-        <!--测试广告控件Activity-->
-        <activity android:name=".ui.test.banner.TestBannerViewActivity" android:screenOrientation="portrait"/>
-        <!--图片预览Activity-->
-        <activity android:name=".ui.test.banner.TestImagePagerActivity" android:screenOrientation="portrait"/>
-        <!--XRecyleView(增加了上拉刷新，和下拉加载更多)Activity-->
-        <activity android:name=".ui.test.TestXRecyleViewActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.test.TestActivityNoPresenter"
+            android:screenOrientation="portrait" />
+        <!-- 测试日期和条件选择框(三级联动)Activity -->
+        <activity
+            android:name=".ui.test.TestPickerViewActivity"
+            android:screenOrientation="portrait" />
+        <!-- 测试广告控件Activity -->
+        <activity
+            android:name=".ui.test.banner.TestBannerViewActivity"
+            android:screenOrientation="portrait" />
+        <!-- 图片预览Activity -->
+        <activity
+            android:name=".ui.test.banner.TestImagePagerActivity"
+            android:screenOrientation="portrait" />
+        <!-- XRecyleView(增加了上拉刷新，和下拉加载更多)Activity -->
+        <activity
+            android:name=".ui.test.TestXRecyleViewActivity"
+            android:screenOrientation="portrait" />
 
-        <!--Android 7.0《API：24》强制启用了被称作 StrictMode的策略，带来的影响就是你的App对外无法暴露file://类型的URI了。
+        <!--
+        Android 7.0《API：24》强制启用了被称作 StrictMode的策略，带来的影响就是你的App对外无法暴露file://类型的URI了。
         如果你使用Intent携带这样的URI去打开外部App(比如：打开系统相机拍照)，那么会抛出FileUriExposedException异常。
-        官方给出解决这个问题的方案，就是使用FileProvider： https://www.jianshu.com/p/55eae30d133c -->
+        官方给出解决这个问题的方案，就是使用FileProvider： https://www.jianshu.com/p/55eae30d133c
+        -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.apkprovider"
@@ -81,6 +103,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <service
+            android:name=".service.ConfigIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

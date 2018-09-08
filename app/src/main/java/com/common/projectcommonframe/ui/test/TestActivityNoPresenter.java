@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.base.BasePresenter;
-import com.common.projectcommonframe.base.BaseResponse;
+import com.common.projectcommonframe.network.BaseResponse;
 import com.common.projectcommonframe.base.BaseView;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.model.LoginModel;
@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TestActivityNoPresenter extends BaseActivity {

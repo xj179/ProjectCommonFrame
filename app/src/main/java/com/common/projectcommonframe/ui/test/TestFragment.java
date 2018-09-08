@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseFragment;
-import com.common.projectcommonframe.base.BaseResponse;
+import com.common.projectcommonframe.network.BaseResponse;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
@@ -22,8 +22,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.ObservableTransformer;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public class TestFragment extends BaseFragment<LoginContract.View, LoginContract.Presenter> implements LoginContract.View {

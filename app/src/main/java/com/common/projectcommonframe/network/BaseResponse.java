@@ -1,4 +1,4 @@
-package com.common.projectcommonframe.base;
+package com.common.projectcommonframe.network;
 
 /**
  * 请求响应结果基类

@@ -2,7 +2,7 @@ package com.common.projectcommonframe.model;
 
 import android.content.Context;
 
-import com.common.projectcommonframe.api.Api;
+import com.common.projectcommonframe.network.Api;
 import com.common.projectcommonframe.base.BaseMode;
 import com.common.projectcommonframe.progress.ObserverResponseListener;
 

@@ -1,7 +1,7 @@
 package com.common.projectcommonframe.contract;
 
 import com.common.projectcommonframe.base.BasePresenter;
-import com.common.projectcommonframe.base.BaseResponse;
+import com.common.projectcommonframe.network.BaseResponse;
 import com.common.projectcommonframe.base.BaseView;
 import com.common.projectcommonframe.entity.Login;
 

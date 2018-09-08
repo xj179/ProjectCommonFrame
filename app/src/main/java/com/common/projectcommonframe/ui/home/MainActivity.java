@@ -1,5 +1,6 @@
 package com.common.projectcommonframe.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
@@ -14,14 +15,21 @@ import com.common.projectcommonframe.base.BaseActivity;
 import com.common.projectcommonframe.base.BaseFragment;
 import com.common.projectcommonframe.base.BasePresenter;
 import com.common.projectcommonframe.base.BaseView;
+import com.common.projectcommonframe.components.BusEventData;
+import com.common.projectcommonframe.service.ConfigIntentService;
 import com.common.projectcommonframe.ui.test.TestFragment;
 import com.common.projectcommonframe.utils.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * 程序主页
@@ -41,6 +49,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
+        EventBus.getDefault().register(this);
         return R.layout.activity_main;
     }
 
@@ -56,6 +65,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void init() {
+        //启动服务，检测更新...
+        startService(new Intent(this, ConfigIntentService.class));
+
         fragments = new ArrayList<>();
         //实际开发当中，需要替换自己的Fragment
       /*  fragments.add(new HomeFragment());
@@ -120,6 +132,27 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
+    }
+
+
+    /**
+     *EventBus消息接收
+     * @param busEventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(BusEventData busEventData){
+        if (busEventData != null && busEventData.getEventKey().equals(BusEventData.KEY_APP_UPDATE)) {  //APP更新
+            SweetAlertDialog dialog = new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE).setContentText("已经为您准备了新版本，是否需要更新~").setCancelButton("取消", null).setConfirmButton("确定", null);
+            dialog.setTitle("应用更新");
+            dialog.show();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private long pressedTime = 0;
