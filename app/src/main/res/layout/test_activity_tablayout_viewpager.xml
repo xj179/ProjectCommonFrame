@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--
+    app:tabSelectedTextColor:Tab被选中时字体的颜色
+    app:tabTextColor ：默认Tab字体的颜色
+    app:tabIndicatorColor：被选中时下划线的颜色
+    app:tabGravity=”fill” 或者 “center” Tab的布局模式 分别是平铺和居中
+    app:tabBackground：TabLayout背景的颜色
+    app:tabMode  tab宽度是否填充屏幕宽度和是滚动
+    -->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="#000000"
+        app:tabIndicatorColor="#FF4081"
+        app:tabGravity="fill"
+        app:tabBackground="@android:color/holo_blue_bright"
+        app:tabMode="fixed">
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>

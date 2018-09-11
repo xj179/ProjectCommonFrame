@@ -74,7 +74,7 @@
             android:screenOrientation="portrait" />
         <!-- 测试日期和条件选择框(三级联动)Activity -->
         <activity
-            android:name=".ui.test.TestPickerViewActivity"
+            android:name=".ui.test.TestActivityPickerView"
             android:screenOrientation="portrait" />
         <!-- 测试广告控件Activity -->
         <activity
@@ -86,7 +86,11 @@
             android:screenOrientation="portrait" />
         <!-- XRecyleView(增加了上拉刷新，和下拉加载更多)Activity -->
         <activity
-            android:name=".ui.test.TestXRecyleViewActivity"
+            android:name=".ui.test.TestActivityXRecyleView"
+            android:screenOrientation="portrait" />
+        <!-- Tablayout 和ViewPager结合示例 Activity -->
+        <activity
+            android:name=".ui.test.TestActivityTablayoutViewPager"
             android:screenOrientation="portrait" />
 
         <!--

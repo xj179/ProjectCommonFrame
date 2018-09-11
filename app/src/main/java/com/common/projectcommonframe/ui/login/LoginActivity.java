@@ -27,10 +27,11 @@ import com.common.projectcommonframe.entity.Login;
 import com.common.projectcommonframe.presenter.LoginPresenter;
 import com.common.projectcommonframe.ui.browser.BrowserActivity;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
+import com.common.projectcommonframe.ui.test.TestActivityTablayoutViewPager;
+import com.common.projectcommonframe.ui.test.TestActivityXRecyleView;
 import com.common.projectcommonframe.ui.test.TestFragment;
-import com.common.projectcommonframe.ui.test.TestPickerViewActivity;
+import com.common.projectcommonframe.ui.test.TestActivityPickerView;
 import com.common.projectcommonframe.ui.test.banner.TestBannerViewActivity;
-import com.common.projectcommonframe.ui.test.TestXRecyleViewActivity;
 import com.common.projectcommonframe.utils.CompoundDrawableUtil;
 import com.common.projectcommonframe.utils.ScreenUtil;
 import com.common.projectcommonframe.utils.SelectorUtil;
@@ -86,6 +87,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     Button main_btn6;
     @BindView(R.id.main_btn7)
     Button main_btn7;
+    @BindView(R.id.main_btn8)
+    Button main_btn8;
 
     @BindView(R.id.title)
     Title title ;
@@ -190,7 +193,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     }
 
     @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2,
-            R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6, R.id.main_btn7})
+            R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6, R.id.main_btn7, R.id.main_btn8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -217,7 +220,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
 //                testShoot() ;
                 break;
             case R.id.main_intent_btn2:  //通用选择控件
-                toActivity(TestPickerViewActivity.class);
+                toActivity(TestActivityPickerView.class);
                 break;
             case R.id.main_btn2:
                 testSweetAlertDialog();
@@ -229,7 +232,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 toActivity(TestBannerViewActivity.class);
                 break;
             case R.id.main_btn5:   //加载XRecyleView  Activity
-                toActivity(TestXRecyleViewActivity.class);
+                toActivity(TestActivityXRecyleView.class);
                 break;
             case R.id.main_btn6:   //测试7.0以上系统文件共享(安装APK等..)
                 testApkInstall();
@@ -244,7 +247,9 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
                 }
                  // Activity中重写此方法 onActivityResult
                 break;
-
+            case R.id.main_btn8:   //TabLayout+ViewPager实现tab和页面联动效果
+                toActivity(TestActivityTablayoutViewPager.class);
+                break;
         }
     }
 

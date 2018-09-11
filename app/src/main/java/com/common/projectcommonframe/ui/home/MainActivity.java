@@ -18,6 +18,7 @@ import com.common.projectcommonframe.base.BaseView;
 import com.common.projectcommonframe.components.BusEventData;
 import com.common.projectcommonframe.service.ConfigIntentService;
 import com.common.projectcommonframe.ui.test.TestFragment;
+import com.common.projectcommonframe.ui.test.TestFragmentTablyoutViewPager;
 import com.common.projectcommonframe.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -75,10 +76,10 @@ public class MainActivity extends BaseActivity {
         fragments.add(new ReadFragment2());
         fragments.add(new MallFragment());
         fragments.add(new SettingsFragment());*/
-        fragments.add(TestFragment.getInstance("", ""));
-        fragments.add(TestFragment.getInstance("", ""));
-        fragments.add(TestFragment.getInstance("", ""));
-        fragments.add(TestFragment.getInstance("", ""));
+        fragments.add(TestFragmentTablyoutViewPager.getInstance());
+        fragments.add(TestFragmentTablyoutViewPager.getInstance());
+        fragments.add(TestFragmentTablyoutViewPager.getInstance());
+        fragments.add(TestFragmentTablyoutViewPager.getInstance());
 
         initTab();
         getSupportFragmentManager().beginTransaction()

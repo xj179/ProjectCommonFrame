@@ -25,7 +25,6 @@ import com.common.projectcommonframe.utils.ToastUtil;
 import com.contrarywind.interfaces.IPickerViewData;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +36,7 @@ import butterknife.OnClick;
  * 仿 iOS 的 PickerView 控件，有时间选择和选项选择并支持一二三级联动效果，TimePopupWindow 时间选择器，支持年月日时分，年月日，时分等格式；
  * OptionsPopupWindow 选项选择器，支持一，二，三级选项选择，并且可以设置是否联动
  */
-public class TestPickerViewActivity extends BaseActivity {
+public class TestActivityPickerView extends BaseActivity {
 
     private ArrayList<ProvinceBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
@@ -96,7 +95,7 @@ public class TestPickerViewActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         BusEventData bed =  new BusEventData(BusEventData.KEY_REFRESH);
-        bed.setContent("TestPickerViewActivity 传过去的值....");
+        bed.setContent("TestActivityPickerView 传过去的值....");
         EventBus.getDefault().post(bed);
     }
 
@@ -133,7 +132,7 @@ public class TestPickerViewActivity extends BaseActivity {
                     @Override
                     public void onOptionsSelectChanged(int options1, int options2, int options3) {
                         String str = "options1: " + options1 + "\noptions2: " + options2 + "\noptions3: " + options3;
-                        Toast.makeText(TestPickerViewActivity.this, str, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TestActivityPickerView.this, str, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build();
@@ -152,7 +151,7 @@ public class TestPickerViewActivity extends BaseActivity {
         TimePickerView pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                Toast.makeText(TestPickerViewActivity.this, TimeUtil.dateToStr(date, TimeUtil.FORMAT_D), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TestActivityPickerView.this, TimeUtil.dateToStr(date, TimeUtil.FORMAT_D), Toast.LENGTH_SHORT).show();
             }
         }).build();
         pvTime.show();

@@ -1,6 +1,5 @@
 package com.common.projectcommonframe.ui.test;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
@@ -36,19 +34,17 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Emitter;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /**
  * a RecyclerView that implements pullrefresh , loadingmore and header featrues.you can use it like a standard RecyclerView. you don't need to implement a special adapter
  * 默认实现了RecyleView下拉刷新和上拉加载更多
  */
-public class TestXRecyleViewActivity extends BaseActivity {
+public class TestActivityXRecyleView extends BaseActivity {
 
 
     @BindView(R.id.title)
@@ -160,7 +156,7 @@ public class TestXRecyleViewActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
         BusEventData bed = new BusEventData(BusEventData.KEY_REFRESH);
-        bed.setContent(TestXRecyleViewActivity.class.getSimpleName() + "传过去的值....");
+        bed.setContent(TestActivityXRecyleView.class.getSimpleName() + "传过去的值....");
         EventBus.getDefault().post(bed);
     }
 
@@ -180,7 +176,7 @@ public class TestXRecyleViewActivity extends BaseActivity {
         @Override
         public void onBindVH(XRcyleviewHolder xRcyleviewHolder, int position) {
             String item = getItem(position);
-            GlideUtil.loadImage(TestXRecyleViewActivity.this, item, xRcyleviewHolder.advertIv);
+            GlideUtil.loadImage(TestActivityXRecyleView.this, item, xRcyleviewHolder.advertIv);
         }
 
     }
