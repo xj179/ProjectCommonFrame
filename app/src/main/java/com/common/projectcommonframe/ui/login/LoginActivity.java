@@ -20,17 +20,17 @@ import android.widget.TextView;
 import com.common.projectcommonframe.BuildConfig;
 import com.common.projectcommonframe.R;
 import com.common.projectcommonframe.base.BaseActivity;
-import com.common.projectcommonframe.network.BaseResponse;
 import com.common.projectcommonframe.components.BusEventData;
 import com.common.projectcommonframe.contract.LoginContract;
 import com.common.projectcommonframe.entity.Login;
+import com.common.projectcommonframe.network.BaseResponse;
 import com.common.projectcommonframe.presenter.LoginPresenter;
 import com.common.projectcommonframe.ui.browser.BrowserActivity;
 import com.common.projectcommonframe.ui.test.TestActivityNoPresenter;
+import com.common.projectcommonframe.ui.test.TestActivityPickerView;
 import com.common.projectcommonframe.ui.test.TestActivityTablayoutViewPager;
 import com.common.projectcommonframe.ui.test.TestActivityXRecyleView;
 import com.common.projectcommonframe.ui.test.TestFragment;
-import com.common.projectcommonframe.ui.test.TestActivityPickerView;
 import com.common.projectcommonframe.ui.test.banner.TestBannerViewActivity;
 import com.common.projectcommonframe.utils.CompoundDrawableUtil;
 import com.common.projectcommonframe.utils.ScreenUtil;
@@ -193,7 +193,8 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
     }
 
     @OnClick({R.id.main_msg_tv, R.id.main_check_btn, R.id.main_check2_btn, R.id.main_intent_btn, R.id.main_btn2,
-            R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6, R.id.main_btn7, R.id.main_btn8})
+            R.id.main_btn3, R.id.main_btn4, R.id.main_btn5, R.id.main_btn6, R.id.main_btn7, R.id.main_btn8,
+            R.id.main_intent_btn2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_msg_tv:
@@ -383,6 +384,7 @@ public class LoginActivity extends BaseActivity<LoginContract.View, LoginContrac
         if(resultCode == RESULT_OK && requestCode == ImageSelectorActivity.REQUEST_IMAGE){
             ArrayList<String> images = (ArrayList<String>) data.getSerializableExtra(ImageSelectorActivity.REQUEST_OUTPUT);
             KLog.i("onActivityResult images:" + images);
+            ToastUtil.show("images:" + images);
             // do something
         }
     }

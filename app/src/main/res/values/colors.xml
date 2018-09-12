@@ -13,6 +13,7 @@
 
     <!--分隔线颜色-->
     <color name="dividerColor">#c1c1c1</color>
+    <color name="underline">#ebebeb</color>
 
     <color name="red">#D81E06</color>
     <color name="orange">#f4511e</color>

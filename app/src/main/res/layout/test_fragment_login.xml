@@ -2,24 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/activityBg">
 
-    <Button
-        android:text="Fragment查询"
-        android:id="@+id/fragment_check_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:text="跳转到常用功能测试界面"
-        android:id="@+id/fragment_check_btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <TextView
-        android:maxLines="5"
-        android:id="@+id/fragment_msg_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:text="Hello World!"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:text="Fragment查询"
+                android:id="@+id/fragment_check_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:text="跳转到常用功能测试界面"
+                android:id="@+id/fragment_check_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:maxLines="5"
+                android:id="@+id/fragment_msg_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:text="Hello World!"/>
+
+            <!--设置相关开始-->
+            <!--关于-->
+            <RelativeLayout
+                android:id="@+id/profile_about_rl"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="关于"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/profile_version_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="35dp"
+                    android:background="@drawable/bg_application_label"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/list_arraw_right" />
+
+            </RelativeLayout>
+
+            <View style="@style/devideview_2" />
+            <!--通知设置-->
+            <TextView
+                android:id="@+id/profile_set"
+                style="@style/profile_itext_tem"
+                android:text="消息设置" />
+            <View style="@style/devideview_2" />
+            <!--清除地图缓存-->
+            <TextView
+                android:id="@+id/clear_map_tv"
+                style="@style/profile_itext_tem"
+                android:text="清除地图缓存"
+                android:visibility="visible" />
+            <View style="@style/devideview_2" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/activityBg" />
+            <TextView
+                android:id="@+id/profile_quit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="退出"
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+            <!--设置相关结束-->
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

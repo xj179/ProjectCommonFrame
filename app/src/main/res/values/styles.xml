@@ -35,6 +35,37 @@
     <style name="AppCompatFullTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="windowActionBar">false</item>
+    </style>
+
+    <!--分隔线-->
+    <style name="devideview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/dividerColor</item>
+    </style>
+
+    <!--分隔线-->
+    <style name="devideview_2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/underline</item>
+    </style>
+
+    <style name="profile_itext_tem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:drawableRight">@mipmap/list_arraw_right</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:maxWidth">180dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:clickable">true</item>
     </style>
 </resources>
