@@ -83,8 +83,7 @@ android {
 
     //为了解决部分第三方库重复打包了META-INF的问题
     packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
+        pickFirst 'META-INF/*'
     }
 
     /* Android Studio编译问题：Error:java.util.concurrent.ExecutionException: com.android.builder.internal.aapt.AaptException:
